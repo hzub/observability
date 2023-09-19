@@ -1,0 +1,28 @@
+class ApiService {
+	async call() {
+		const response = await fetch("...");
+		if (!response.ok) {
+			return Promise.reject(new Error(
+        "Failed to fetch <URL>"
+      ));
+		}
+		return response.json();
+	}
+}
+
+function process() {
+	new ApiService().call()
+	  .then((data) => {
+		  // ...
+	  })
+	  .catch((error) => {
+		  // ?
+	  });
+}
+
+document
+	.querySelector("button")
+	.addEventListener("click", () => {
+		process();
+	});
+			  

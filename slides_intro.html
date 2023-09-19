@@ -1,0 +1,149 @@
+<section>
+  <strong class="text-orange-300">JS</strong> jak JavaScript,
+  <strong class="text-blue-300">O</strong> jak Observability
+  <p class="text-2xl">Hubert Zub, Future Conf 2023</p>
+  <aside class="notes">
+    <li>dziękuję za zaproszenie Andrzejowi</li>
+    <li>z Białegostoku</li>
+    <li>Jutro o AI, dziś o JS</li>
+    <li>no właśnie - AI przetwarza sporo danych</li>
+    <li>Bez tego żadna nowoczesna appka</li>
+  </aside>
+</section>
+<section>
+  <div>
+    <p>Kto mówi?</p>
+    <p class="fragment">Hubert</p>
+    <ul class="fragment">
+      <li>meet.js</li>
+      <li><img width="40" height="40" src="logo.png" /> Databricks</li>
+    </ul>
+    <img src="download.jpeg" width="300" class="fragment" />
+  </div>
+  <aside class="notes">
+    <li>data warehousy, lakes, przetwarzanie danych</li>
+    <li>eksabajty danych</li>
+    <li>
+      databricks - możliwe że nie słyszeliście, ale jesteście klientem firmy
+      która jest naszym klientem
+    </li>
+    <li>apple, adobe, cisco, hp, toyota, siemens</li>
+  </aside>
+</section>
+<section>
+  <section>
+    <span style="opacity: 0.3"
+      ><strong class="text-orange-300">JS</strong> jak JavaScript, </span
+    ><strong class="text-blue-300">O</strong> jak Observability
+    <aside class="notes">
+      <li>teraz by wypadała definicja</li>
+      <li>wszyscy lubią definiować</li>
+      <li>i mogą się o to bić (testy e2e, framework vs biblioteka)</li>
+      <li>zdefiniujmy sami</li>
+    </aside>
+  </section>
+  <section>Czy to zbieranie logów?</section>
+  <section>
+    A po co to komu? Kto tego potrzebuje?
+    <aside class="notes">
+      <li>
+        czy my jako programiści potrzebujemy zbierania dużęj ilości logów userzy
+        korzystają z apki
+      </li>
+      <li>
+        my może nie, ale ci od produktu chcą wiedzieć czy mamy błędy w aplikacji
+      </li>
+      <li>albo czy aplikacja szybko działa</li>
+      <li>albo czy featury które tworzymy w ogóle są wykorzystywane</li>
+    </aside>
+  </section>
+  <section>
+    <p>Czyli po pierwsze: błędy</p>
+    <aside class="notes">
+      zrobiliście aplikację, wiecie że jest bez błędów bo przecież popisaliście
+      testy, wysyłacie na produkcję. Checie słyszeć o błędach? No nie. Ale wasz
+      account już tak, bo jak błędy będą krytyczne to on świeci oczami.
+    </aside>
+  </section>
+  <section>
+    <p>Po drugie: performance</p>
+    <aside class="notes">
+      jak pisaliście apkę to przecież śmigała szybko. A nawet jak było coś wolno
+      to zoptymalizowaliście. Przeskanowaliście web vitals, wszystko śmiga. To
+      po co się tym przejmować jak jest szybko. Jak coś wolno to wiadomo że to
+      wina tych na backendzie. No ale tworzyliście appkę na jakimś macbooku
+      który ma 12 rdzeni i 32 gb ramu bo wam firma kupiła. A user może mieć
+      biurowy komputer na przysłowiowy węgiel. I póki.
+    </aside>
+  </section>
+  <section>
+    <p>Po trzecie: analityka zdarzeń</p>
+    <aside class="notes">
+      czy potrzebujecie tego? Przecież UX/UI zaprojektował, narysował, frontend
+      jest postawiony wg designu. Potrzebujecie wiedzieć jak userzy klikają w
+      które przyciski etc.? Może tak, może nie, ale dział produktowy potrzebuje
+      wiedzieć czy zaprojektował interfejs który jest jasny. Mógł zrobić testy
+      UXowe z userami, ale to małą skala. I kosztuje.
+    </aside>
+  </section>
+  <section>
+    <p>czemu te rzeczy <i>obserwujemy</i>?</p>
+    <aside class="notes">
+      <li>Czemu nie sprawdzimy tego wcześniej</li>
+      <li>tylko teraz?</li>
+      <li>
+        observability pozwala nam robić (jedyne legalne) testy na produkcji - z
+        DUŻą ilością userów
+      </li>
+      <li>zweryfikować błędy</li>
+    </aside>
+  </section>
+  <section>
+    <p>na potrzeby prezentacji:</p>
+    <ul>
+      <li>raportowanie błędów</li>
+      <li>metryki wydajności</li>
+      <li>dane do analityki</li>
+    </ul>
+    <p class="fragment">(..na produkcji)</p>
+    <aside class="notes">
+      <li>
+        to jest robocza definicja na potrzeby prezentacji, wierzę mocno że masa
+        ludzi chciałaby to zdefiniować inaczej - bardzo chętnie się o to
+        podyskutuje ale po prezce :)
+      </li>
+    </aside>
+  </section>
+  <section>
+    <p>Englisz 🇬🇧:</p>
+    <ul>
+      <li>error reporting</li>
+      <li>performance metrics</li>
+      <li>analytics events</li>
+    </ul>
+  </section>
+  <section>
+    Co z tego dziś omówimy?
+    <aside class="notes">
+      <li>dotkniemy każdego tematu ze strony frontendu</li>
+      <li>RAZ</li>
+      <li>nie będziemy omawiać narzędzi - do tego są tutoriale</li>
+      <li>lockrocket, datadog, sentry, grafana etc.</li>
+      <li>może nawet na swoim backendzie macie customowe rozwiązanie etc.</li>
+      <li>
+        nie mówię jak zestawić - ale jak działać na frontendzie, by te
+        observability miało sens
+      </li>
+      <li>zwrócić uwagę na uniwersalne praktyki, pułapki etc</li>
+      <li>DWA</li>
+      <li>nie będę wam mówił ze warto</li>
+      <li>bo to troche jak prezka o tym żę warto pisać testy</li>
+    </aside>
+  </section>
+  <section>
+    Założenia:
+    <ul>
+      <li class="fragment">Mamy spięty system do wysyłania eventów</li>
+    </ul>
+  </section>
+</section>

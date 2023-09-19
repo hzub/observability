@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/loadcontent/plugin.js"></script>
+    <!-- <script src="plugin/highlight/highlight.js"></script> -->
+  </head>
+  <body>
+    <div class="reveal">
+      <!-- <div class="slides" data-load="slides_intro.html"></div> -->
+      <!-- <div class="slides"></div> -->
+      <div class="slides">
+        <section>
+          <strong class="text-orange-300">JS</strong> jak JavaScript,
+          <strong class="text-blue-300">O</strong> jak Observability
+          <p class="text-2xl">Hubert Zub, Future Conf 2023</p>
+          <aside class="notes">
+            <li>dziękuję za zaproszenie Andrzejowi</li>
+            <li>z Białegostoku</li>
+            <li>Jutro o AI, dziś o JS</li>
+            <li>no właśnie - AI przetwarza sporo danych</li>
+            <li>Bez tego żadna nowoczesna appka</li>
+          </aside>
+        </section>
+        <section>
+          <div>
+            <p>Kto mówi?</p>
+            <p class="fragment">Hubert</p>
+            <ul class="fragment">
+              <li>meet.js</li>
+              <li><img width="40" height="40" src="logo.png" /> Databricks</li>
+            </ul>
+            <img src="download.jpeg" width="300" class="fragment" />
+          </div>
+          <aside class="notes">
+            <li>data warehousy, lakes, przetwarzanie danych</li>
+            <li>eksabajty danych</li>
+            <li>
+              databricks - możliwe że nie słyszeliście, ale jesteście klientem
+              firmy która jest naszym klientem
+            </li>
+            <li>apple, adobe, cisco, hp, toyota, siemens</li>
+          </aside>
+        </section>
+        <section>
+          <section>
+            <span style="opacity: 0.3"
+              ><strong class="text-orange-300">JS</strong> jak JavaScript, </span
+            ><strong class="text-blue-300">O</strong> jak Observability
+            <aside class="notes">
+              <li>teraz by wypadała definicja</li>
+              <li>wszyscy lubią definiować</li>
+              <li>i mogą się o to bić (testy e2e, framework vs biblioteka)</li>
+              <li>zdefiniujmy sami</li>
+            </aside>
+          </section>
+          <section>Czy to zbieranie logów?</section>
+          <section>
+            A po co to komu? Kto tego potrzebuje?
+            <aside class="notes">
+              <li>
+                czy my jako programiści potrzebujemy zbierania dużęj ilości
+                logów userzy korzystają z apki
+              </li>
+              <li>
+                my może nie, ale ci od produktu chcą wiedzieć czy mamy błędy w
+                aplikacji
+              </li>
+              <li>albo czy aplikacja szybko działa</li>
+              <li>albo czy featury które tworzymy w ogóle są wykorzystywane</li>
+            </aside>
+          </section>
+          <section>
+            <p>Czyli po pierwsze: błędy</p>
+            <aside class="notes">
+              zrobiliście aplikację, wiecie że jest bez błędów bo przecież
+              popisaliście testy, wysyłacie na produkcję. Checie słyszeć o
+              błędach? No nie. Ale wasz account już tak, bo jak błędy będą
+              krytyczne to on świeci oczami.
+            </aside>
+          </section>
+          <section>
+            <p>Po drugie: performance</p>
+            <aside class="notes">
+              jak pisaliście apkę to przecież śmigała szybko. A nawet jak było
+              coś wolno to zoptymalizowaliście. Przeskanowaliście web vitals,
+              wszystko śmiga. To po co się tym przejmować jak jest szybko. Jak
+              coś wolno to wiadomo że to wina tych na backendzie. No ale
+              tworzyliście appkę na jakimś macbooku który ma 12 rdzeni i 32 gb
+              ramu bo wam firma kupiła. A user może mieć biurowy komputer na
+              przysłowiowy węgiel. I póki.
+            </aside>
+          </section>
+          <section>
+            <p>Po trzecie: analityka zdarzeń</p>
+            <aside class="notes">
+              czy potrzebujecie tego? Przecież UX/UI zaprojektował, narysował,
+              frontend jest postawiony wg designu. Potrzebujecie wiedzieć jak
+              userzy klikają w które przyciski etc.? Może tak, może nie, ale
+              dział produktowy potrzebuje wiedzieć czy zaprojektował interfejs
+              który jest jasny. Mógł zrobić testy UXowe z userami, ale to małą
+              skala. I kosztuje.
+            </aside>
+          </section>
+          <section>
+            <p>czemu te rzeczy <i>obserwujemy</i>?</p>
+            <aside class="notes">
+              <li>Czemu nie sprawdzimy tego wcześniej</li>
+              <li>tylko teraz?</li>
+              <li>
+                observability pozwala nam robić (jedyne legalne) testy na
+                produkcji - z DUŻą ilością userów
+              </li>
+              <li>zweryfikować błędy</li>
+            </aside>
+          </section>
+          <section>
+            <p>na potrzeby prezentacji:</p>
+            <ul>
+              <li>raportowanie błędów</li>
+              <li>metryki wydajności</li>
+              <li>dane do analityki</li>
+            </ul>
+            <p class="fragment">(..na produkcji)</p>
+            <aside class="notes">
+              <li>
+                to jest robocza definicja na potrzeby prezentacji, wierzę mocno
+                że masa ludzi chciałaby to zdefiniować inaczej - bardzo chętnie
+                się o to podyskutuje ale po prezce :)
+              </li>
+            </aside>
+          </section>
+          <section>
+            <p>Englisz 🇬🇧:</p>
+            <ul>
+              <li>error reporting</li>
+              <li>performance metrics</li>
+              <li>analytics events</li>
+            </ul>
+          </section>
+          <section>
+            Co z tego dziś omówimy?
+            <aside class="notes">
+              <li>dotkniemy każdego tematu ze strony frontendu</li>
+              <li>RAZ</li>
+              <li>nie będziemy omawiać narzędzi - do tego są tutoriale</li>
+              <li>lockrocket, datadog, sentry, grafana etc.</li>
+              <li>
+                może nawet na swoim backendzie macie customowe rozwiązanie etc.
+              </li>
+              <li>
+                nie mówię jak zestawić - ale jak działać na frontendzie, by te
+                observability miało sens
+              </li>
+              <li>zwrócić uwagę na uniwersalne praktyki, pułapki etc</li>
+              <li>DWA</li>
+              <li>nie będę wam mówił ze warto</li>
+              <li>bo to troche jak prezka o tym żę warto pisać testy</li>
+            </aside>
+          </section>
+          <section>
+            Założenia:
+            <ul>
+              <li class="fragment">Mamy spięty system do wysyłania eventów</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-background="#d57b7b">
+          <section>
+            <p>Część I</p>
+            <p><strong>Błędy</strong></p>
+          </section>
+          <section>
+            <p>Potrzebujemy?</p>
+            <aside class="notes">
+              <li>Gadamy o tym czy nie gadamy, macie bezbłędne aplikacje?</li>
+              <li>
+                Zakładamy że mamy super CI więc żadne błędy czasu budowy:
+                syntaxy etc. nie przejdą więc interesują nas tylko runtime’y
+              </li>
+            </aside>
+          </section>
+          <section>
+            <p>To co robimy z tymi błędami 🤔</p>
+            <ul>
+              <li class="fragment">#1: Nic</li>
+              <li class="fragment">#2: Ładny modal + wyślij proszę email</li>
+              <li class="fragment">
+                <strong>#3: Ładny modal + automatyzacja</strong>
+              </li>
+            </ul>
+            <aside class="notes">
+              <li>BANAŁ</li>
+              <li>1: nic nie robimy</li>
+              <li>2: wyświetlamy ładny modal + email</li>
+              <li>3: automatyzujemy</li>
+            </aside>
+          </section>
+
+          <section>
+            <p>Raportujemy błędy</p>
+            <ul>
+              <li class="fragment">
+                Z pomocą narzędzi: Sentry, LogRocket etc.
+              </li>
+              <li class="fragment">
+                Po swojemu: własny system do raportowania
+              </li>
+            </ul>
+            <p class="fragment">
+              Cel: statystyka, reprodukcja, zaraportowanie, naprawa
+            </p>
+            <aside class="notes">
+              <li>BANAŁ</li>
+              <li>może tak</li>
+              <li>a moze tak</li>
+            </aside>
+          </section>
+          <section>[OBRAZEK] flow jak idzie błąd</section>
+        </section>
+        <section data-background="#d57b7b">
+          <p>Pułapki i praktyki</p>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #1</p>
+            <p><strong>Logujemy za mało</strong></p>
+            <aside class="notes">
+              <li>BANAŁ</li>
+              <li>klasyk</li>
+            </aside>
+          </section>
+          <section>
+            <pre><code data-line-numbers="1-11|13-21|23-27|5-7|18-20" data-trim>class ApiService {
+	async call() {
+		const response = await fetch("...");
+		if (!response.ok) {
+			return Promise.reject(new Error(
+        "Failed to fetch [URL]"
+      ));
+		}
+		return response.json();
+	}
+}
+
+function process() {
+	new ApiService().call()
+	  .then((data) => {
+		  // ...
+	  })
+	  .catch((error) => {
+		  // ?
+	  });
+}
+
+document
+	.querySelector("button")
+	.addEventListener("click", () => {
+		process();
+	});
+  </code></pre>
+          </section>
+          <section>
+            <pre><code data-trim>
+              .catch((error) => {
+                console.log(error);
+              });
+			  </code></pre>
+          </section>
+          <section>
+            <img src="img/bledy/1.png" width="100%"" />
+            <p class="fragment">Z grubsza wszystko co wiemy ☝️</p>
+            <p class="fragment">Jaki ticket z tego wyjdzie?</p>
+          </section>
+          <section>
+            <p>Co pomoże (łatwe)?</p>
+            <ul>
+              <li class="fragment">
+                Pełny stack trace
+                <ul>
+                  <li>(za chwilę)</li>
+                </ul>
+              </li>
+
+              <li class="fragment">URL / historia URLi (route-ów)</li>
+
+              <li class="fragment"><code>navigator.*</code></li>
+            </ul>
+          </section>
+          <section>
+            <p>Co jeszcze pomoże?</p>
+            <ul>
+              <li class="fragment">odbitka feature flag</li>
+              <li class="fragment">ewaluacja A/B</li>
+            </ul>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #2</p>
+            <p><strong>Logujemy za dużo</strong></p>
+            <aside class="notes">
+              <li>można?</li>
+            </aside>
+          </section>
+          <section>
+            <img src="img/bledy/2.png" />
+            <p class="fragment">Co tu jest nie tak?</p>
+          </section>
+          <section>
+            <p class="fragment">Konstruując błędy, raporty, logi:</p>
+            <ul>
+              <li class="fragment">
+                Unikajmy treści tworzonych przez użytkowników
+              </li>
+              <li class="fragment">Najlepiej bazować na URLach</li>
+            </ul>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #3</p>
+            <p><strong>Niekompletne stack trace'y</strong></p>
+            <aside class="notes"></aside>
+          </section>
+          <section>
+            <pre><code data-line-numbers="1-11|13-21|23-27|5-7|18-20" data-trim>class ApiService {
+  async call() {
+    const response = await fetch("...");
+    if (!response.ok) {
+      return Promise.reject(new Error(
+        "Failed to fetch [URL]"
+      ));
+    }
+    return response.json();
+  }
+}
+
+function process() {
+  new ApiService().call()
+    .then((data) => {
+      // ...
+    })
+    .catch((error) => {
+      console.log(error.stack)
+    });
+}</code></pre>
+          </section>
+          <section><img src="img/bledy/1.png" width="100%" /></section>
+          <section>
+            <pre><code data-line-numbers="2|3-6" data-trim>function process() {
+  const initiatorStack = new Error().stack;
+  new ApiService().call().catch((error) => {
+    console.log(error.stack);
+    console.log(initiatorStack);
+  });
+}
+
+document.querySelector("button").addEventListener("click", () => {
+  process();
+});
+</code></pre>
+          </section>
+          <section><img src="img/bledy/3.png" /></section>
+          <section>
+            <pre><code data-line-numbers="4-8" data-trim>function process() {
+  const initiatorStack = new Error().stack;
+  new ApiService().call().catch((error) => {
+    const completeStack = [
+      error.stack,
+      ...initiatorStack.split("\n").slice(1),
+    ].join("\n");
+    console.log(completeStack);
+  });
+}</code></pre>
+          </section>
+          <section><img src="img/bledy/4.png" /></section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #4</p>
+            <p><strong>Brak informacji od użytkownika</strong></p>
+            <aside class="notes">
+              <li>Pod spodem ładnie wysyła się błąd</li>
+              <li>A na wierzchu?</li>
+            </aside>
+          </section>
+          <section><img src="img/bledy/5.png" width="100%" /></section>
+          <section><img src="img/bledy/6.png" width="100%" /></section>
+          <section>
+            <p>Czy można lepiej?</p>
+            <p class="fragment">A zrzut ekranu? 🤔</p>
+          </section>
+          <section>
+            <pre><code data-trim data-line-numbers="|2-6|8-12|14-21">async function snapshot() {
+  const stream = await navigator.mediaDevices
+    .getDisplayMedia({
+      preferCurrentTab: true,
+    });
+  const [track] = stream.getVideoTracks();
+
+  const canvas = document.createElement("canvas");
+  const video = document.createElement("video");
+  video.srcObject = stream;
+
+  await video.play();
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+
+  canvas.toBlob((blob) => {
+    track.stop();
+    // Przetworzenie + wysłanie bloba
+  });
+}
+</code></pre>
+          </section>
+          <section><img src="img/bledy/7.png" width="100%" /></section>
+          <section>Z autopsji: ☝️ mocno pomogło lokalizować błędy</section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #5</p>
+            <p><strong>Testowanie raportowania</strong></p>
+            <aside class="notes">
+              <li>odpalacie system, stawiacie sentry czy coś tam</li>
+              <li>i nie ma błędów</li>
+              <li>...i nie ma błędów</li>
+              <li>to dobrze, prawda?</li>
+              <li>warto napisać test który zmockowane</li>
+              <li>
+                a bardziej warto napisać e2e który będzie siedział w waszym CI i
+                raz na miesiąc faktycznie wysypie stronę i zgłosi faktyczny
+                raport
+              </li>
+            </aside>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #6</p>
+            <p><strong>Niespójny system logowania</strong></p>
+            <aside class="notes"></aside>
+          </section>
+          <section>
+            <pre><code data-trim data-line-numbers="1-13|15-18|20-23|25-30">
+class ErrorWrapper extends Error {
+  constructor(
+    private error: string,
+    private errorCode: number,
+    private stackTrace = new Error().stack
+  ) {
+    super(error);
+  }
+  serialize() {
+    const { error, stackTrace, errorCode } = this;
+    return { error, stackTrace, errorCode };
+  }
+}
+
+function doSomething1() {
+  // ...
+  throw new ErrorWrapper("Unauthorized", 401);
+}
+
+function doSomething2() {
+  // ...
+  throw { code: 401, message: "Unauthorized" };
+}
+
+function doSomething3() {
+  // ...
+  throw new Error(JSON.stringify(
+    { code: 401, message: "Unauthorized" }
+  ));
+}
+
+            </code></pre>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <p>Podsumowanie części o błędach</p>
+          <ul>
+            <li class="fragment">Minimum do reprodukcji</li>
+            <li class="fragment">Brak danych użytkownika</li>
+            <li class="fragment">Pełne zrzuty stosów</li>
+            <li class="fragment">Testujmy!</li>
+          </ul>
+        </section>
+        <section data-background="#3c3355">
+          <section>
+            <p>Część II</p>
+            <p><strong>Wydajność</strong></p>
+          </section>
+          <section>
+            <p>Dlaczego?</p>
+            <aside class="notes">
+              <li>Znowu - problem macbooka programisty</li>
+              <li>
+                Celem jest by appka była szybka/używalna przez wszystkich na
+                większości maszyn
+              </li>
+              <li>(chyba że nie, ale to dziwny model biznesowy)</li>
+            </aside>
+          </section>
+          <section>
+            <p><em>"Czy aplikacja jest wystarczająco szybka"</em></p>
+            <p>Jak na to odpowiedzieć?</p>
+          </section>
+          <section>
+            <p>Możemy zmierzyć</p>
+            <ul>
+              <li class="fragment">
+                Czas renderu ekranów (poszczególnych części)
+              </li>
+              <li class="fragment">Wąskie gardła, blokujące taski</li>
+              <li class="fragment">Wielkość pobieranych danych</li>
+            </ul>
+          </section>
+          <section>
+            <p>A gdyby tak pomiar E2E?</p>
+            <aside class="notes">
+              <li>
+                Czas responsów z API. Wiecie, jak za długie to problem bo też
+                apka wolno działa. Ale to problem backendu, infry od networku,
+                chmurowców - każdy zmierzy po swojemu.
+              </li>
+              <li>
+                Ale my na frontendzie mamy wyjątkową, w zasadzie najlepszą
+                pozycję do mierzenia
+              </li>
+              <li>
+                Możemy zebrać ile e2eowo mija czasu od wysłania każdego requestu
+                do otrzymania responsu
+              </li>
+            </aside>
+          </section>
+          <section>
+            <p>[OBRAZEK - e2e flow]</p>
+            <p class="fragment">Jak można działać:</p>
+            <ul>
+              <li class="fragment">
+                Nazwanie każdej interakcji (scenariusza, UJ, ...)
+              </li>
+              <li class="fragment">Raportowanie pełnego czasu interakcji</li>
+              <li class="fragment">
+                Dopełnienie wąskimi gardłami oraz ilością zasobów
+              </li>
+            </ul>
+          </section>
+          <section>
+            <p>Jak?</p>
+            <ul>
+              <li class="fragment">
+                Start:
+                <strong class="fragment"
+                  >otwarcie aplikacji, nawigacja, akcja użytkownika</strong
+                >
+              </li>
+              <li class="fragment">
+                Koniec: <strong class="fragment">interaktywność?</strong>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <pre><code><script type="text/template">const Komponent = () => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetchData(...).then(() => {
+      setLoading(false);
+    });
+  }, []);
+  return (
+    <Interaction name="DETAILS_TABLE_VIEW">
+      <div>{/* ... */}</div>
+      <InteractionBlock isLoading={loading} />
+    </Interaction>
+  );
+}
+
+</script></code></pre>
+          </section>
+          <section>
+            <pre><code><script type="text/template">requestAnimationFrame(() => {
+  // Odblokowanie
+});</script></code></pre>
+          </section>
+          <section>
+            <pre><code><script type="text/template">requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    // Odblokowanie v2
+  });
+});</script></code></pre>
+            <aside class="notes">
+              <li>
+                pierwszy rAF moze jeszcze wykonac się w tej samej ramce
+                wykonania
+              </li>
+              <li>zagnieżdżony będzie na bank w kolejnej</li>
+            </aside>
+          </section>
+        </section>
+        <section data-background="#3c3355">
+          <section>
+            <p>Pułapka #1</p>
+            <p><strong>Pomiar wpływa na pomiar</strong></p>
+          </section>
+          <section>
+            <ul>
+              <li class="fragment">
+                Własne, niestandardowe rozwiązanie
+                <ul>
+                  <li>Kolejkowanie</li>
+                  <li>Sampling</li>
+                </ul>
+              </li>
+              <li class="fragment">
+                Korzystanie z narzędzia
+                <ul>
+                  <li>Raczej jest sprawnie</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section data-background="#3c3355">
+          <section>
+            <p>Pułapka #2</p>
+            <p><strong>Kiepsko nazwane interakcje/scenariusze</strong></p>
+          </section>
+          <section>[SCREEN - "page load time"]</section>
+        </section>
+        <section data-background="#3c3355">
+          <section>
+            <p>Podpowiedź</p>
+            <p><strong>PerformanceObserver</strong></p>
+          </section>
+          <section>
+            <pre><code data-line-numbers>const observer = new PerformanceObserver((list) => {
+  console.log(list.getEntries()[0]);
+});
+
+observer.observe({
+  type: "longtask",
+});
+            </code></pre>
+          </section>
+          <section>
+            <pre><code data-trim data-line-numbers="|1-3|5-11|13-19"><script type="text/template">
+<body>
+  <div>test</div>
+</body>
+
+const observer = new PerformanceObserver((list) => {
+  console.log(list.getEntries()[0]);
+});
+
+observer.observe({
+  type: "longtask",
+});
+
+setTimeout(() => {
+  for (let i = 0; i < 500; i++) {
+    for (let j = 0; j < 500; j++) {
+      document.querySelector("div").innerHTML = "x";
+    }
+  }
+}, 1000);
+            </script></code></pre>
+          </section>
+          <section>
+            <img src="img/perf/1.png" width="100%" />
+          </section>
+          <section>
+            <pre><code data-trim data-line-numbers="7-16|14"><script type="text/template">
+const observer = new PerformanceObserver((list) => {
+  for (const item of list.getEntries()) {
+    console.log(item);
+  }
+});
+
+observer.observe({
+  entryTypes: [
+    "mark",
+    "measure",
+    "longtask",
+    "paint",
+    "navigation",
+    "resource",
+  ],
+});
+            </script></code></pre>
+          </section>
+          <section>
+            <img src="img/perf/2.png" width="100%" />
+          </section>
+          <section>
+            <img src="img/perf/3.png" width="100%" />
+          </section>
+        </section>
+        <section data-background="#3c3355">
+          <p>Podsumowanie części wydajności</p>
+          <ul>
+            <li class="fragment">Pomiary E2E</li>
+            <li class="fragment">Organizacja interakcji</li>
+            <li class="fragment">PerformanceObserver</li>
+          </ul>
+        </section>
+        <section data-background="#185642">
+          <p>Część #3: Analityka</p>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealLoadContent,
+        ],
+      });
+    </script>
+  </body>
+</html>

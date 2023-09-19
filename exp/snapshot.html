@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="mainContentArea">
+      <h1>Hello</h1>
+      <div>Test</div>
+    </div>
+    <script>
+      async function snapshot() {
+        const stream = await navigator.mediaDevices.getDisplayMedia({
+          preferCurrentTab: true,
+        });
+        const [track] = stream.getVideoTracks();
+
+        const canvas = document.createElement("canvas");
+        const video = document.createElement("video");
+        video.srcObject = stream;
+
+        await video.play();
+
+        // Draw one video frame to canvas.
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext("2d").drawImage(video, 0, 0);
+
+        canvas.toBlob((blob) => {
+          track.stop();
+          // Procesowanie bloba
+        });
+      }
+      snapshot();
+    </script>
+  </body>
+</html>

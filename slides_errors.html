@@ -1,0 +1,320 @@
+<div class="slides">
+        <section data-background="#d57b7b">
+          <section>
+            <p>Część I</p>
+            <p><strong>Błędy</strong></p>
+          </section>
+          <section>
+            <p>Potrzebujemy?</p>
+            <aside class="notes">
+              <li>Gadamy o tym czy nie gadamy, macie bezbłędne aplikacje?</li>
+              <li>
+                Zakładamy że mamy super CI więc żadne błędy czasu budowy:
+                syntaxy etc. nie przejdą więc interesują nas tylko runtime’y
+              </li>
+            </aside>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>To co robimy z tymi błędami 🤔</p>
+            <ul>
+              <li class="fragment">#1: Nic</li>
+              <li class="fragment">#2: Ładny modal + wyślij proszę email</li>
+              <li class="fragment">
+                <strong>#3: Ładny modal + automatyzacja</strong>
+              </li>
+            </ul>
+            <aside class="notes">
+              <li>BANAŁ</li>
+              <li>1: nic nie robimy</li>
+              <li>2: wyświetlamy ładny modal + email</li>
+              <li>3: automatyzujemy</li>
+            </aside>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Raportujemy błędy</p>
+            <ul>
+              <li class="fragment">
+                Z pomocą narzędzi: Sentry, LogRocket etc.
+              </li>
+              <li class="fragment">
+                Po swojemu: własny system do raportowania
+              </li>
+            </ul>
+            <p class="fragment">
+              Cel: statystyka, reprodukcja, zaraportowanie, naprawa
+            </p>
+            <aside class="notes">
+              <li>BANAŁ</li>
+              <li>może tak</li>
+              <li>a moze tak</li>
+            </aside>
+          </section>
+          <section>[OBRAZEK] flow jak idzie błąd</section>
+        </section>
+        <section data-background="#d57b7b">
+          <p>Pułapki i praktyki</p>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #1</p>
+            <p><strong>Logujemy za mało</strong></p>
+            <aside class="notes">
+              <li>BANAŁ</li>
+              <li>klasyk</li>
+            </aside>
+          </section>
+          <section>
+            <pre><code data-line-numbers="1-11|13-21|23-27|5-7|18-20" data-trim>class ApiService {
+	async call() {
+		const response = await fetch("...");
+		if (!response.ok) {
+			return Promise.reject(new Error(
+        "Failed to fetch [URL]"
+      ));
+		}
+		return response.json();
+	}
+}
+
+function process() {
+	new ApiService().call()
+	  .then((data) => {
+		  // ...
+	  })
+	  .catch((error) => {
+		  // ?
+	  });
+}
+
+document
+	.querySelector("button")
+	.addEventListener("click", () => {
+		process();
+	});
+  </code></pre>
+          </section>
+          <section>
+            <pre><code data-trim>
+              .catch((error) => {
+                console.log(error);
+              });
+			  </code></pre>
+          </section>
+          <section>
+            <img src="img/bledy/1.png" width="100%"" />
+            <p class="fragment">Z grubsza wszystko co wiemy ☝️</p>
+            <p class="fragment">Jaki ticket z tego wyjdzie?</p>
+          </section>
+          <section>
+            <p>Co pomoże (łatwe)?</p>
+            <ul>
+              <li class="fragment">
+                Pełny stack trace
+                <ul>
+                  <li>(za chwilę)</li>
+                </ul>
+              </li>
+
+              <li class="fragment">URL / historia URLi (route-ów)</li>
+
+              <li class="fragment"><code>navigator.*</code></li>
+            </ul>
+          </section>
+          <section>
+            <p>Co jeszcze pomoże?</p>
+            <ul>
+              <li class="fragment">odbitka feature flag</li>
+              <li class="fragment">ewaluacja A/B</li>
+            </ul>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #2</p>
+            <p><strong>Logujemy za dużo</strong></p>
+            <aside class="notes">
+              <li>można?</li>
+            </aside>
+          </section>
+          <section>
+            <img src="img/bledy/2.png" />
+            <p class="fragment">Co tu jest nie tak?</p>
+          </section>
+          <section>
+            <p class="fragment">Konstruując błędy, raporty, logi:</p>
+            <ul>
+              <li class="fragment">
+                Unikajmy treści tworzonych przez użytkowników
+              </li>
+              <li class="fragment">Najlepiej bazować na URLach</li>
+            </ul>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #3</p>
+            <p><strong>Niekompletne stack trace'y</strong></p>
+            <aside class="notes"></aside>
+          </section>
+          <section>
+            <pre><code data-line-numbers="1-11|13-21|23-27|5-7|18-20" data-trim>class ApiService {
+  async call() {
+    const response = await fetch("...");
+    if (!response.ok) {
+      return Promise.reject(new Error(
+        "Failed to fetch [URL]"
+      ));
+    }
+    return response.json();
+  }
+}
+
+function process() {
+  new ApiService().call()
+    .then((data) => {
+      // ...
+    })
+    .catch((error) => {
+      console.log(error.stack)
+    });
+}</code></pre>
+          </section>
+          <section><img src="img/bledy/1.png" width="100%" /></section>
+          <section>
+            <pre><code data-line-numbers="2|3-6" data-trim>function process() {
+  const initiatorStack = new Error().stack;
+  new ApiService().call().catch((error) => {
+    console.log(error.stack);
+    console.log(initiatorStack);
+  });
+}
+
+document.querySelector("button").addEventListener("click", () => {
+  process();
+});
+</code></pre>
+          </section>
+          <section><img src="img/bledy/3.png" /></section>
+          <section>
+            <pre><code data-line-numbers="4-8" data-trim>function process() {
+  const initiatorStack = new Error().stack;
+  new ApiService().call().catch((error) => {
+    const completeStack = [
+      error.stack,
+      ...initiatorStack.split("\n").slice(1),
+    ].join("\n");
+    console.log(completeStack);
+  });
+}</code></pre>
+          </section>
+          <section><img src="img/bledy/4.png" /></section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #4</p>
+            <p><strong>Brak informacji od użytkownika</strong></p>
+            <aside class="notes">
+              <li>Pod spodem ładnie wysyła się błąd</li>
+              <li>A na wierzchu?</li>
+            </aside>
+          </section>
+          <section><img src="img/bledy/5.png" width="100%" /></section>
+          <section><img src="img/bledy/6.png" width="100%" /></section>
+          <section>
+            <p>Czy można lepiej?</p>
+            <p class="fragment">A zrzut ekranu? 🤔</p>
+          </section>
+          <section>
+            <pre><code data-trim data-line-numbers="|2-6|8-12|14-21">async function snapshot() {
+  const stream = await navigator.mediaDevices
+    .getDisplayMedia({
+      preferCurrentTab: true,
+    });
+  const [track] = stream.getVideoTracks();
+
+  const canvas = document.createElement("canvas");
+  const video = document.createElement("video");
+  video.srcObject = stream;
+
+  await video.play();
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+
+  canvas.toBlob((blob) => {
+    track.stop();
+    // Przetworzenie + wysłanie bloba
+  });
+}
+</code></pre>
+          </section>
+          <section><img src="img/bledy/7.png" width="100%" /></section>
+          <section>Z autopsji: ☝️ mocno pomogło lokalizować błędy</section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #5</p>
+            <p><strong>Testowanie raportowania</strong></p>
+            <aside class="notes">
+              <li>odpalacie system, stawiacie sentry czy coś tam</li>
+              <li>i nie ma błędów</li>
+              <li>...i nie ma błędów</li>
+              <li>to dobrze, prawda?</li>
+              <li>warto napisać test który zmockowane</li>
+              <li>
+                a bardziej warto napisać e2e który będzie siedział w waszym CI i
+                raz na miesiąc faktycznie wysypie stronę i zgłosi faktyczny
+                raport
+              </li>
+            </aside>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #6</p>
+            <p><strong>Niespójny system logowania</strong></p>
+            <aside class="notes"></aside>
+          </section>
+          <section>
+            <pre><code data-trim data-line-numbers="1-13|15-18|20-23|25-30">
+class ErrorWrapper extends Error {
+  constructor(
+    private error: string,
+    private errorCode: number,
+    private stackTrace = new Error().stack
+  ) {
+    super(error);
+  }
+  serialize() {
+    const { error, stackTrace, errorCode } = this;
+    return { error, stackTrace, errorCode };
+  }
+}
+
+function doSomething1() {
+  // ...
+  throw new ErrorWrapper("Unauthorized", 401);
+}
+
+function doSomething2() {
+  // ...
+  throw { code: 401, message: "Unauthorized" };
+}
+
+function doSomething3() {
+  // ...
+  throw new Error(JSON.stringify(
+    { code: 401, message: "Unauthorized" }
+  ));
+}
+
+            </code></pre>
+          </section>
+          <section>🤯</section>
+        </section>
+      </div>
