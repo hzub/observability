@@ -15,11 +15,7 @@
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
-    <link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/loadcontent/plugin.js"></script>
+    <link href="tailwind.css" rel="stylesheet" />
     <!-- <script src="plugin/highlight/highlight.js"></script> -->
   </head>
   <body>
@@ -32,10 +28,11 @@
           <strong class="text-blue-300">O</strong> jak Observability
           <p class="text-2xl">Hubert Zub, Future Conf 2023</p>
           <aside class="notes">
+            <li>nazywam się Hubert</li>
             <li>dziękuję za zaproszenie Andrzejowi</li>
             <li>z Białegostoku</li>
             <li>Jutro o AI, dziś o JS</li>
-            <li>no właśnie - AI przetwarza sporo danych</li>
+            <li>no właśnie - AI przetwarza sporo danych...</li>
             <li>Bez tego żadna nowoczesna appka</li>
           </aside>
         </section>
@@ -71,10 +68,33 @@
               <li>zdefiniujmy sami</li>
             </aside>
           </section>
-          <section>Czy to zbieranie logów?</section>
           <section>
-            A po co to komu? Kto tego potrzebuje?
+            Co musimy wiedzieć o aplikacji na produkcji?
             <aside class="notes">
+              <li>czy działa</li>
+              <li>a co to znaczy</li>
+              <li>że userzy mogą klikać w featury</li>
+              <li>że te featury działają</li>
+              <li>że te featury działają szybko</li>
+              <li>że te featury są znajdowalne przez userów!</li>
+            </aside>
+          </section>
+          <!-- <section>
+            Czy to...
+            <span class="r-stack">
+              <span class="fragment fade-out" data-fragment-index="0"
+                >zbieranie logów?</span
+              >
+              <span class="fragment current-visible" data-fragment-index="0"
+                >statystyka błędów?</span
+              >
+              <span class="fragment">xxgz logów?</span>
+            </span>
+          </section> -->
+          <section>
+            A kto tego potrzebuje?
+            <aside class="notes">
+              <li>appka stoi, zrobiona, wypuszczona - kto potrzebuje</li>
               <li>
                 czy my jako programiści potrzebujemy zbierania dużęj ilości
                 logów userzy korzystają z apki
@@ -88,7 +108,7 @@
             </aside>
           </section>
           <section>
-            <p>Czyli po pierwsze: błędy</p>
+            <p>Czyli po pierwsze: <strong>błędy</strong></p>
             <aside class="notes">
               zrobiliście aplikację, wiecie że jest bez błędów bo przecież
               popisaliście testy, wysyłacie na produkcję. Checie słyszeć o
@@ -97,7 +117,7 @@
             </aside>
           </section>
           <section>
-            <p>Po drugie: performance</p>
+            <p>Po drugie: <strong>performance</strong></p>
             <aside class="notes">
               jak pisaliście apkę to przecież śmigała szybko. A nawet jak było
               coś wolno to zoptymalizowaliście. Przeskanowaliście web vitals,
@@ -109,7 +129,7 @@
             </aside>
           </section>
           <section>
-            <p>Po trzecie: analityka zdarzeń</p>
+            <p>Po trzecie: <strong>analityka zdarzeń</strong></p>
             <aside class="notes">
               czy potrzebujecie tego? Przecież UX/UI zaprojektował, narysował,
               frontend jest postawiony wg designu. Potrzebujecie wiedzieć jak
@@ -120,7 +140,10 @@
             </aside>
           </section>
           <section>
-            <p>czemu te rzeczy <i>obserwujemy</i>?</p>
+            <p>
+              Czemu te rzeczy <em><strong>obserwujemy</strong></em
+              >?
+            </p>
             <aside class="notes">
               <li>Czemu nie sprawdzimy tego wcześniej</li>
               <li>tylko teraz?</li>
@@ -132,13 +155,13 @@
             </aside>
           </section>
           <section>
-            <p>na potrzeby prezentacji:</p>
+            <p>Umówmy się 😉 że observability to:</p>
             <ul>
-              <li>raportowanie błędów</li>
-              <li>metryki wydajności</li>
-              <li>dane do analityki</li>
+              <li>Raportowanie błędów</li>
+              <li>Metryki wydajności</li>
+              <li>Analityka zdarzeń</li>
             </ul>
-            <p class="fragment">(..na produkcji)</p>
+            <p class="fragment">...obserwowane na produkcji</p>
             <aside class="notes">
               <li>
                 to jest robocza definicja na potrzeby prezentacji, wierzę mocno
@@ -147,18 +170,18 @@
               </li>
             </aside>
           </section>
+
           <section>
-            <p>Englisz 🇬🇧:</p>
+            <p>Inglisz 🇬🇧:</p>
             <ul>
               <li>error reporting</li>
               <li>performance metrics</li>
-              <li>analytics events</li>
+              <li>event analytics</li>
             </ul>
           </section>
           <section>
-            Co z tego dziś omówimy?
+            O czym NIE jest ta prezentacja?
             <aside class="notes">
-              <li>dotkniemy każdego tematu ze strony frontendu</li>
               <li>RAZ</li>
               <li>nie będziemy omawiać narzędzi - do tego są tutoriale</li>
               <li>lockrocket, datadog, sentry, grafana etc.</li>
@@ -169,18 +192,43 @@
                 nie mówię jak zestawić - ale jak działać na frontendzie, by te
                 observability miało sens
               </li>
-              <li>zwrócić uwagę na uniwersalne praktyki, pułapki etc</li>
               <li>DWA</li>
               <li>nie będę wam mówił ze warto</li>
               <li>bo to troche jak prezka o tym żę warto pisać testy</li>
             </aside>
           </section>
           <section>
-            Założenia:
+            <p>O czym jest ta prezentacja?</p>
+
+            <aside class="notes">
+              <li>dotkniemy każdego tematu ze strony frontendu</li>
+              <li>zwrócić uwagę na uniwersalne praktyki, pułapki etc</li>
+              <li>pokazać ciekawostki</li>
+              <li>JAK PISAĆ APKI KTÓRE DA SIĘ OBSERWOWAĆ</li>
+              <li>
+                problem: każdy z tych tematów to może być oddzielna prezka, no
+                ale...
+              </li>
+            </aside>
+          </section>
+
+          <section>
             <ul>
-              <li class="fragment">Mamy spięty system do wysyłania eventów</li>
+              <li class="fragment">Raportowanie błędów</li>
+              <li class="fragment">Metryki wydajności</li>
+              <li class="fragment" style="opacity: 0.3">Analityka zdarzeń</li>
             </ul>
           </section>
+
+          <!-- <section>
+            <p>Wyobrażamy sobie że:</p>
+            <ul>
+              <li class="fragment">
+                Posiadamy już zainstalowany i spięty system do metryk
+              </li>
+              <li class="fragment">Chcemy by spełniał swoją rolę</li>
+            </ul>
+          </section> -->
         </section>
 
         <section data-background="#d57b7b">
@@ -191,7 +239,9 @@
           <section>
             <p>Potrzebujemy?</p>
             <aside class="notes">
-              <li>Gadamy o tym czy nie gadamy, macie bezbłędne aplikacje?</li>
+              <li>
+                Już rozmawialiśmy - wypuszczacie bezbłędne aplikacje? JAk nie to
+              </li>
               <li>
                 Zakładamy że mamy super CI więc żadne błędy czasu budowy:
                 syntaxy etc. nie przejdą więc interesują nas tylko runtime’y
@@ -200,13 +250,13 @@
           </section>
           <section>
             <p>To co robimy z tymi błędami 🤔</p>
-            <ul>
-              <li class="fragment">#1: Nic</li>
-              <li class="fragment">#2: Ładny modal + wyślij proszę email</li>
+            <ol>
+              <li class="fragment">Nic</li>
+              <li class="fragment">Ładny modal + wyślij proszę email</li>
               <li class="fragment">
-                <strong>#3: Ładny modal + automatyzacja</strong>
+                <strong>Ładny modal + automatyczne raportowanie</strong>
               </li>
-            </ul>
+            </ol>
             <aside class="notes">
               <li>BANAŁ</li>
               <li>1: nic nie robimy</li>
@@ -216,7 +266,12 @@
           </section>
 
           <section>
-            <p>Raportujemy błędy</p>
+            <p>Przypominajka/wyjaśnienie</p>
+            <img src="img/sch/error.png" />
+          </section>
+          <section>Efekt skali</section>
+          <section>
+            <p>Jak?</p>
             <ul>
               <li class="fragment">
                 Z pomocą narzędzi: Sentry, LogRocket etc.
@@ -234,12 +289,15 @@
               <li>a moze tak</li>
             </aside>
           </section>
-          <section>[OBRAZEK] flow jak idzie błąd</section>
+          <section>
+            <img src="img/tools/sentry.jpg" />
+          </section>
         </section>
+
         <section data-background="#d57b7b">
-          <p>Pułapki i praktyki</p>
-        </section>
-        <section data-background="#d57b7b">
+          <section data-background="#d57b7b">
+            <p>Pułapki i praktyki</p>
+          </section>
           <section>
             <p>Pułapka #1</p>
             <p><strong>Logujemy za mało</strong></p>
@@ -249,7 +307,7 @@
             </aside>
           </section>
           <section>
-            <pre><code data-line-numbers="1-11|13-21|23-27|5-7|18-20" data-trim>class ApiService {
+            <pre><code data-line-numbers="4-8|13-21|23-27|5-7|18-20" data-trim>class ApiService {
 	async call() {
 		const response = await fetch("...");
 		if (!response.ok) {
@@ -293,12 +351,7 @@ document
           <section>
             <p>Co pomoże (łatwe)?</p>
             <ul>
-              <li class="fragment">
-                Pełny stack trace
-                <ul>
-                  <li>(za chwilę)</li>
-                </ul>
-              </li>
+              <li class="fragment">Pełny stack trace</li>
 
               <li class="fragment">URL / historia URLi (route-ów)</li>
 
@@ -315,31 +368,7 @@ document
         </section>
         <section data-background="#d57b7b">
           <section>
-            <p>Pułapka #2</p>
-            <p><strong>Logujemy za dużo</strong></p>
-            <aside class="notes">
-              <li>można?</li>
-            </aside>
-          </section>
-          <section>
-            <img src="img/bledy/2.png" />
-            <p class="fragment">Co tu jest nie tak?</p>
-          </section>
-          <section>
-            <p class="fragment">Konstruując błędy, raporty, logi:</p>
-            <ul>
-              <li class="fragment">
-                Unikajmy treści tworzonych przez użytkowników
-              </li>
-              <li class="fragment">Najlepiej bazować na URLach</li>
-            </ul>
-          </section>
-        </section>
-        <section data-background="#d57b7b">
-          <section>
-            <p>Pułapka #3</p>
-            <p><strong>Niekompletne stack trace'y</strong></p>
-            <aside class="notes"></aside>
+            <p>Stack trace</p>
           </section>
           <section>
             <pre><code data-line-numbers="1-11|13-21|23-27|5-7|18-20" data-trim>class ApiService {
@@ -393,10 +422,55 @@ document.querySelector("button").addEventListener("click", () => {
 }</code></pre>
           </section>
           <section><img src="img/bledy/4.png" /></section>
+          <section>
+            Nie logujmy za mało...
+            <aside class="notes"></aside>
+          </section>
         </section>
         <section data-background="#d57b7b">
           <section>
-            <p>Pułapka #4</p>
+            <p>Pułapka #2</p>
+            <p><strong>Logujemy za dużo</strong></p>
+            <aside class="notes">
+              <li>można?</li>
+            </aside>
+          </section>
+          <section>
+            <img src="img/bledy/2.png" />
+            <p class="fragment">Co tu jest nie tak?</p>
+          </section>
+          <section>
+            <pre><code data-trim>{
+  "exception": {
+    "code": "403",
+    "error": "Unauthorized"
+  },
+  "request": {
+    "method": "POST",
+    "resource": "/api/tables/1341",
+    "body": {
+      "operation": "register",
+      "withToken": "NjEzMjMxNTg2MDM4NTAxMTY1MzA3MzM3MDYwNDQ3NzU1ODM2OTc5NDE0MjgxODM1"
+    }
+  }
+}</code></pre>
+          </section>
+          <section>
+            <p>Konstruując błędy, raporty, logi:</p>
+            <p class="fragment">✂️</p>
+            <aside class="notes">
+              <li>Zwyczajowo wycinamy dane użytkownika</li>
+              <li>Wystarczą: identyfikatory, URLe, klucze</li>
+              <li>Jak nie, to przemyślmy architekturę</li>
+              <li>Z wyjątków: wycinajmy tokeny, klucze, hasła etc.</li>
+              <li>Im mniej danych użytkownika tym lepiej</li>
+              <li>A skoro o userze mowa</li>
+            </aside>
+          </section>
+        </section>
+        <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #3</p>
             <p><strong>Brak informacji od użytkownika</strong></p>
             <aside class="notes">
               <li>Pod spodem ładnie wysyła się błąd</li>
@@ -404,7 +478,20 @@ document.querySelector("button").addEventListener("click", () => {
             </aside>
           </section>
           <section><img src="img/bledy/5.png" width="100%" /></section>
+          <section>
+            <p>Cel?</p>
+            <p class="fragment">Maksymalizacja reprodukowalności</p>
+          </section>
           <section><img src="img/bledy/6.png" width="100%" /></section>
+          <section>
+            <h2>Obserwacja:</h2>
+            <p>
+              Użytkownicy częściej niż nam się wydaje podają dodatkowe dane.
+            </p>
+            <p>
+              <strong>Użytkownicy płacący jeszcze częściej.</strong>
+            </p>
+          </section>
           <section>
             <p>Czy można lepiej?</p>
             <p class="fragment">A zrzut ekranu? 🤔</p>
@@ -439,25 +526,7 @@ document.querySelector("button").addEventListener("click", () => {
         </section>
         <section data-background="#d57b7b">
           <section>
-            <p>Pułapka #5</p>
-            <p><strong>Testowanie raportowania</strong></p>
-            <aside class="notes">
-              <li>odpalacie system, stawiacie sentry czy coś tam</li>
-              <li>i nie ma błędów</li>
-              <li>...i nie ma błędów</li>
-              <li>to dobrze, prawda?</li>
-              <li>warto napisać test który zmockowane</li>
-              <li>
-                a bardziej warto napisać e2e który będzie siedział w waszym CI i
-                raz na miesiąc faktycznie wysypie stronę i zgłosi faktyczny
-                raport
-              </li>
-            </aside>
-          </section>
-        </section>
-        <section data-background="#d57b7b">
-          <section>
-            <p>Pułapka #6</p>
+            <p>Pułapka #4</p>
             <p><strong>Niespójny system logowania</strong></p>
             <aside class="notes"></aside>
           </section>
@@ -498,11 +567,41 @@ function doSomething3() {
           </section>
         </section>
         <section data-background="#d57b7b">
+          <section>
+            <p>Pułapka #5</p>
+            <p><strong>Testowanie raportowania</strong></p>
+          </section>
+          <section>
+            <center>
+              <img src="img/tools/mem.jpg" />
+            </center>
+            <aside class="notes">
+              <li>odpalacie system, stawiacie sentry czy coś tam</li>
+              <li>i nie ma błędów</li>
+              <li>...i nie ma błędów</li>
+              <li>to dobrze, prawda?</li>
+              <li>warto napisać test który zmockowane</li>
+            </aside>
+          </section>
+          <section>
+            <h1>🥸</h1>
+            <aside class="notes">
+              <li>
+                a bardziej warto napisać e2e który będzie siedział w waszym CI i
+                raz na miesiąc faktycznie wysypie stronę i zgłosi faktyczny
+                raport
+              </li>
+            </aside>
+          </section>
+        </section>
+
+        <section data-background="#d57b7b">
           <p>Podsumowanie części o błędach</p>
           <ul>
             <li class="fragment">Minimum do reprodukcji</li>
-            <li class="fragment">Brak danych użytkownika</li>
+            <li class="fragment">Uważajmy co raportujemy</li>
             <li class="fragment">Pełne zrzuty stosów</li>
+            <li class="fragment">Spójna forma</li>
             <li class="fragment">Testujmy!</li>
           </ul>
         </section>
@@ -524,80 +623,185 @@ function doSomething3() {
           </section>
           <section>
             <p><em>"Czy aplikacja jest wystarczająco szybka"</em></p>
-            <p>Jak na to odpowiedzieć?</p>
+            <p class="fragment">Jak na to odpowiedzieć?</p>
           </section>
           <section>
-            <p>Możemy zmierzyć</p>
+            <p>Możemy zmierzyć:</p>
             <ul>
               <li class="fragment">
                 Czas renderu ekranów (poszczególnych części)
               </li>
               <li class="fragment">Wąskie gardła, blokujące taski</li>
               <li class="fragment">Wielkość pobieranych danych</li>
+              <li class="fragment">Chrome Lighthouse</li>
+              <li class="fragment">...</li>
             </ul>
           </section>
           <section>
-            <p>A gdyby tak pomiar E2E?</p>
+            Czy to odpowiada na pytanie?
             <aside class="notes">
+              <li>Może odpowiada, ale nie używamy wtedy wcale observability</li>
+            </aside>
+          </section>
+        </section>
+        <section data-background="#3c3355">
+          <section>
+            <p>Pułapka #1</p>
+            <p>
+              <strong>Mierzymy tylko szczegóły</strong>
+            </p>
+          </section>
+
+          <section>
+            <p>Co tak naprawdę nas interesuje?</p>
+            <p class="fragment">A gdyby tak E2E?</p>
+            <aside class="notes">
+              <li>Co tak naprawdę nas interesuje?</li>
               <li>
-                Czas responsów z API. Wiecie, jak za długie to problem bo też
-                apka wolno działa. Ale to problem backendu, infry od networku,
-                chmurowców - każdy zmierzy po swojemu.
+                MOŻEMY Czas responsów z API. Wiecie, jak za długie to problem bo
+                też apka wolno działa. Ale to problem backendu, infry od
+                networku, chmurowców - każdy zmierzy po swojemu.
               </li>
+              <li>MOŻEMY czas ekranów</li>
+              <li>MOŻEMY zasoby</li>
               <li>
                 Ale my na frontendzie mamy wyjątkową, w zasadzie najlepszą
                 pozycję do mierzenia
               </li>
-              <li>
-                Możemy zebrać ile e2eowo mija czasu od wysłania każdego requestu
-                do otrzymania responsu
-              </li>
+              <li>JAKI INNY AKTOR potrafi zebrtać tak dane</li>
             </aside>
           </section>
           <section>
-            <p>[OBRAZEK - e2e flow]</p>
-            <p class="fragment">Jak można działać:</p>
-            <ul>
-              <li class="fragment">
-                Nazwanie każdej interakcji (scenariusza, UJ, ...)
+            <center><img src="img/sch/perf.png" /></center>
+            <aside class="notes">
+              <li>Start jakiejś akcji (INTERAKCJI) - nawigacja, klik etc</li>
+              <li>Coś się dzieje.</li>
+              <li>Może to być ładowanie strony</li>
+              <li>Może to być ładowanie kolejnej strony czyli nawigacja</li>
+              <li>
+                Może to być akcja która odzywa się do API i coś przetwarza
               </li>
-              <li class="fragment">Raportowanie pełnego czasu interakcji</li>
-              <li class="fragment">
-                Dopełnienie wąskimi gardłami oraz ilością zasobów
-              </li>
-            </ul>
+              <li>Co interesuje userów? Kiedy mogą robić dalej</li>
+            </aside>
           </section>
           <section>
-            <p>Jak?</p>
             <ul>
-              <li class="fragment">
-                Start:
-                <strong class="fragment"
+              <li>
+                Start:<br />
+                <strong
                   >otwarcie aplikacji, nawigacja, akcja użytkownika</strong
                 >
               </li>
+              <br />
+              <li>Koniec:<br /><strong>interaktywność?</strong></li>
+            </ul>
+          </section>
+          <section>I to można mierzyć</section>
+          <section>
+            <p>Jak można działać:</p>
+            <ul>
               <li class="fragment">
-                Koniec: <strong class="fragment">interaktywność?</strong>
+                Zdefiniowanie/nazwanie każdej interakcji (scenariusza, UJ, ...)
               </li>
+              <li class="fragment">Raportowanie pełnego czasu interakcji</li>
+              <li class="fragment">Od interaktywności do interaktywności</li>
+              <li class="fragment">+ dopełnienie suchymi danymi</li>
             </ul>
           </section>
           <section>
-            <pre><code><script type="text/template">const Komponent = () => {
-  const [loading, setLoading] = useState(true);
+            <p>Pomysły na implementację?</p>
+            <ul>
+              <li class="fragment">
+                Rozpoczynanie interakcji przy nawigacji (nasłuch na routerze)
+              </li>
+              <li class="fragment">
+                Rozpoczynanie interakcji na żądanie (zdarzenie na elemencie)
+              </li>
+              <li class="fragment">Zależnie od frameworka</li>
+            </ul>
+          </section>
+
+          <section>
+            <pre><code data-line-numbers="|2-5"><script type="text/template">const Routes = () => {
   useEffect(() => {
-    fetchData(...).then(() => {
-      setLoading(false);
-    });
-  }, []);
+    const interaction = getInteraction(location.path);
+    startInteraction(location.path);
+  }, [location])
+  
   return (
-    <Interaction name="DETAILS_TABLE_VIEW">
-      <div>{/* ... */}</div>
-      <InteractionBlock isLoading={loading} />
-    </Interaction>
+    <Switch>
+      <Route path="/tables" element={...} />
+      <Route path="/users" element={...} />
+    </Switch>
   );
 }
 
 </script></code></pre>
+          </section>
+          <section>
+            <pre><code data-line-numbers="|2-5,10"><script type="text/template">const View = () => {
+  const loadUsers = useCallback(() => {
+    startInteraction('LOADING_USERS');
+    fetchUsersFromApi(...);
+  }, [])
+  
+  return (
+    <div>
+      {/* ... */}
+      <button onClick={loadUsers}>Load</button>
+    </div>
+  );
+}
+
+</script></code></pre>
+          </section>
+
+          <section>
+            <pre><code data-line-numbers="|9-14"><script type="text/template">const View = () => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  
+  useEffect(... => ...)
+  
+  return (
+    <div>
+      <InteractionBlock
+        name="PAGE_CLIENTS_TABLE_VIEW" 
+        isBlocked={loading}
+      >
+        {loading ? <Spinner /> : data.map(... => ...)}
+      </Interation>
+    </div>
+  );
+}
+
+</script></code></pre>
+          </section>
+
+          <section>
+            <pre><code data-line-numbers="10-14"><script type="text/template"><div class="feed-toggle">
+  <ul class="nav nav-pills outline-active">
+    
+    <li [hidden]="!listConfig.filters.tag">
+      <a class="nav-link active">
+        {{ listConfig.filters.tag }}
+      </a>
+    </li>
+  </ul>
+  <interaction-pending
+    name="CLIENT_TABLE_LOADING"
+    [loading]="loading"
+  >
+  </interaction-pending>
+</div></script></code></pre>
+          </section>
+
+          <section>
+            <p>A kiedy skończyć i zaraportować?</p>
+            <p class="fragment">Podpowiedź: interaktywność</p>
+          </section>
+          <section>
+            <h1>🤔</h1>
           </section>
           <section>
             <pre><code><script type="text/template">requestAnimationFrame(() => {
@@ -607,7 +811,7 @@ function doSomething3() {
           <section>
             <pre><code><script type="text/template">requestAnimationFrame(() => {
   requestAnimationFrame(() => {
-    // Odblokowanie v2
+    // Odblokowanie
   });
 });</script></code></pre>
             <aside class="notes">
@@ -618,41 +822,27 @@ function doSomething3() {
               <li>zagnieżdżony będzie na bank w kolejnej</li>
             </aside>
           </section>
+          <section>
+            <center><img src="img/sch/perf.png" /></center>
+            <aside class="notes">
+              <li>Z autopsji: ☝️ działa całkiem nieźle</li>
+            </aside>
+          </section>
         </section>
         <section data-background="#3c3355">
           <section>
-            <p>Pułapka #1</p>
-            <p><strong>Pomiar wpływa na pomiar</strong></p>
-          </section>
-          <section>
+            <p>A co ze szczegółami?</p>
             <ul>
-              <li class="fragment">
-                Własne, niestandardowe rozwiązanie
-                <ul>
-                  <li>Kolejkowanie</li>
-                  <li>Sampling</li>
-                </ul>
-              </li>
-              <li class="fragment">
-                Korzystanie z narzędzia
-                <ul>
-                  <li>Raczej jest sprawnie</li>
-                </ul>
-              </li>
+              <li class="fragment">Wąskie gardła</li>
+              <li class="fragment">Ilość zasobów</li>
             </ul>
           </section>
-        </section>
-        <section data-background="#3c3355">
           <section>
-            <p>Pułapka #2</p>
-            <p><strong>Kiepsko nazwane interakcje/scenariusze</strong></p>
-          </section>
-          <section>[SCREEN - "page load time"]</section>
-        </section>
-        <section data-background="#3c3355">
-          <section>
-            <p>Podpowiedź</p>
-            <p><strong>PerformanceObserver</strong></p>
+            <p>Wąskie gardła</p>
+            <ul>
+              <li class="fragment">Możemy dłubać ręcznie</li>
+              <li class="fragment">...PerformanceObserver API</li>
+            </ul>
           </section>
           <section>
             <pre><code data-line-numbers>const observer = new PerformanceObserver((list) => {
@@ -718,6 +908,30 @@ observer.observe({
           </section>
         </section>
         <section data-background="#3c3355">
+          <section>
+            <p>Pułapka #2</p>
+            <p><strong>Pomiar wpływa na pomiar</strong></p>
+          </section>
+          <section>
+            <p>TODO: Przykład</p>
+          </section>
+          <section>
+            <div>Rozwiązanie</div>
+            <ul>
+              <li>Kolejkowanie</li>
+              <li>Sampling</li>
+            </ul>
+          </section>
+        </section>
+        <!-- <section data-background="#3c3355">
+          <section>
+            <p>Pułapka #3</p>
+            <p><strong>Kiepsko nazwane interakcje/scenariusze</strong></p>
+          </section>
+          <section>[SCREEN - "page load time"]</section>
+        </section> -->
+
+        <section data-background="#3c3355">
           <p>Podsumowanie części wydajności</p>
           <ul>
             <li class="fragment">Pomiary E2E</li>
@@ -743,12 +957,7 @@ observer.observe({
         hash: true,
 
         // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [
-          RevealMarkdown,
-          RevealHighlight,
-          RevealNotes,
-          RevealLoadContent,
-        ],
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
       });
     </script>
   </body>
