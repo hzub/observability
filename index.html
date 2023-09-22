@@ -37,14 +37,41 @@
           </aside>
         </section>
         <section>
-          <div>
-            <p>Kto mówi?</p>
-            <p class="fragment">Hubert</p>
-            <ul class="fragment">
-              <li>meet.js</li>
-              <li><img width="40" height="40" src="logo.png" /> Databricks</li>
-            </ul>
-            <img src="download.jpeg" width="300" class="fragment" />
+          <h3>Kto mówi?</h3>
+          <div style="display: grid; grid-auto-flow: column">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5em;
+              "
+            >
+              <div class="fragment" data-fragment-index="1">👋 Hubert Zub</div>
+              <div
+                class="fragment"
+                data-fragment-index="2"
+                style="display: flex; gap: 0.2em; align-items: center"
+              >
+                <img src="logomjs.png" style="width: 1em; margin: 0" />
+                meet.js Białystok
+              </div>
+              <div
+                class="fragment"
+                style="display: flex; gap: 0.2em; align-items: center"
+                data-fragment-index="3"
+              >
+                <img src="logo.png" style="width: 1em; margin: 0" />
+                Databricks
+              </div>
+            </div>
+            <img
+              src="download.jpeg"
+              data-fragment-index="1"
+              width="300"
+              class="fragment"
+              style="margin: 0"
+            />
           </div>
           <aside class="notes">
             <li>data warehousy, lakes, przetwarzanie danych</li>
@@ -53,7 +80,7 @@
               databricks - możliwe że nie słyszeliście, ale jesteście klientem
               firmy która jest naszym klientem
             </li>
-            <li>apple, adobe, cisco, hp, toyota, siemens</li>
+            <li>apple, adobe, hp, toyota, siemens, cisco</li>
           </aside>
         </section>
         <section>
@@ -69,7 +96,12 @@
             </aside>
           </section>
           <section>
-            Co musimy wiedzieć o aplikacji na produkcji?
+            <div>Wypuszczamy aplikację na produkcję</div>
+            <div class="fragment">
+              Co <strike style="opacity: 0.3">chcemy</strike>musimy wiedzieć o
+              dalszych jej losach?
+            </div>
+
             <aside class="notes">
               <li>czy działa</li>
               <li>a co to znaczy</li>
@@ -79,36 +111,21 @@
               <li>że te featury są znajdowalne przez userów!</li>
             </aside>
           </section>
-          <!-- <section>
-            Czy to...
-            <span class="r-stack">
-              <span class="fragment fade-out" data-fragment-index="0"
-                >zbieranie logów?</span
-              >
-              <span class="fragment current-visible" data-fragment-index="0"
-                >statystyka błędów?</span
-              >
-              <span class="fragment">xxgz logów?</span>
-            </span>
-          </section> -->
           <section>
             A kto tego potrzebuje?
             <aside class="notes">
-              <li>appka stoi, zrobiona, wypuszczona - kto potrzebuje</li>
               <li>
                 czy my jako programiści potrzebujemy zbierania dużęj ilości
                 logów userzy korzystają z apki
               </li>
-              <li>
-                my może nie, ale ci od produktu chcą wiedzieć czy mamy błędy w
-                aplikacji
-              </li>
+              <li>my może nie, ale ci od produktu</li>
               <li>albo czy aplikacja szybko działa</li>
               <li>albo czy featury które tworzymy w ogóle są wykorzystywane</li>
             </aside>
           </section>
           <section>
-            <p>Czyli po pierwsze: <strong>błędy</strong></p>
+            <p>Ok, to ustalmy roboczo</p>
+            <p>po pierwsze: <strong class="fragment">błędy</strong></p>
             <aside class="notes">
               zrobiliście aplikację, wiecie że jest bez błędów bo przecież
               popisaliście testy, wysyłacie na produkcję. Checie słyszeć o
@@ -117,7 +134,7 @@
             </aside>
           </section>
           <section>
-            <p>Po drugie: <strong>performance</strong></p>
+            <p>Po drugie: <strong class="fragment">performance</strong></p>
             <aside class="notes">
               jak pisaliście apkę to przecież śmigała szybko. A nawet jak było
               coś wolno to zoptymalizowaliście. Przeskanowaliście web vitals,
@@ -129,7 +146,9 @@
             </aside>
           </section>
           <section>
-            <p>Po trzecie: <strong>analityka zdarzeń</strong></p>
+            <p>
+              Po trzecie: <strong class="fragment">analityka zdarzeń</strong>
+            </p>
             <aside class="notes">
               czy potrzebujecie tego? Przecież UX/UI zaprojektował, narysował,
               frontend jest postawiony wg designu. Potrzebujecie wiedzieć jak
@@ -151,15 +170,14 @@
                 observability pozwala nam robić (jedyne legalne) testy na
                 produkcji - z DUŻą ilością userów
               </li>
-              <li>zweryfikować błędy</li>
             </aside>
           </section>
           <section>
-            <p>Umówmy się 😉 że observability to:</p>
+            <p>Więc umówmy się (😉) że jest to:</p>
             <ul>
-              <li>Raportowanie błędów</li>
-              <li>Metryki wydajności</li>
-              <li>Analityka zdarzeń</li>
+              <li class="fragment">Raportowanie błędów</li>
+              <li class="fragment">Metryki wydajności</li>
+              <li class="fragment">Analityka zdarzeń</li>
             </ul>
             <p class="fragment">...obserwowane na produkcji</p>
             <aside class="notes">
@@ -172,25 +190,36 @@
           </section>
 
           <section>
-            <p>Inglisz 🇬🇧:</p>
+            <div>Z czego dziś...</div>
             <ul>
-              <li>error reporting</li>
-              <li>performance metrics</li>
-              <li>event analytics</li>
+              <li>Raportowanie błędów</li>
+              <li>Metryki wydajności</li>
+              <li style="opacity: 0.3"><strike>Analityka zdarzeń</strike></li>
             </ul>
+            <aside class="notes">
+              <li>
+                skupię się na pierwszych dwóch bo tu zaobserwowałem najwięcej
+                ciekawostek
+              </li>
+              <li>
+                o tym jak przygotować dobrze kod pod analyticsy - do tego są
+                tutoriale
+              </li>
+              <li>i raczej nie jest to rocket science</li>
+            </aside>
           </section>
+
           <section>
             O czym NIE jest ta prezentacja?
             <aside class="notes">
               <li>RAZ</li>
-              <li>nie będziemy omawiać narzędzi - do tego są tutoriale</li>
-              <li>lockrocket, datadog, sentry, grafana etc.</li>
+              <li>
+                nie będziemy omawiać jak zestawiać narzędzia - do tego są
+                tutoriale
+              </li>
+              <li>logrocket, datadog, sentry, grafana etc.</li>
               <li>
                 może nawet na swoim backendzie macie customowe rozwiązanie etc.
-              </li>
-              <li>
-                nie mówię jak zestawić - ale jak działać na frontendzie, by te
-                observability miało sens
               </li>
               <li>DWA</li>
               <li>nie będę wam mówił ze warto</li>
@@ -201,34 +230,27 @@
             <p>O czym jest ta prezentacja?</p>
 
             <aside class="notes">
-              <li>dotkniemy każdego tematu ze strony frontendu</li>
+              <li>nieważne jak zestawicie sobie zestaw do observability</li>
+              <li>na co zwrócić uwagę</li>
+              <li>na jakie pułapki uważać</li>
+              <li>jakie ciekawe triki zastosować</li>
+              <li>i jak podejść do niektórych niebanalnych tematów</li>
+              <!-- <li>dotkniemy każdego tematu ze strony frontendu</li>
               <li>zwrócić uwagę na uniwersalne praktyki, pułapki etc</li>
               <li>pokazać ciekawostki</li>
-              <li>JAK PISAĆ APKI KTÓRE DA SIĘ OBSERWOWAĆ</li>
+              -->
+              <li>czyli JAK PISAĆ APKI KTÓRE DA SIĘ OBSERWOWAĆ</li>
+              <li>
+                cel: jakaś checklista w głowie, jak bedzie chwila to sobie
+                spojrzycie na swój system
+              </li>
+              <!--
               <li>
                 problem: każdy z tych tematów to może być oddzielna prezka, no
                 ale...
-              </li>
+              </li> -->
             </aside>
           </section>
-
-          <section>
-            <ul>
-              <li class="fragment">Raportowanie błędów</li>
-              <li class="fragment">Metryki wydajności</li>
-              <li class="fragment" style="opacity: 0.3">Analityka zdarzeń</li>
-            </ul>
-          </section>
-
-          <!-- <section>
-            <p>Wyobrażamy sobie że:</p>
-            <ul>
-              <li class="fragment">
-                Posiadamy już zainstalowany i spięty system do metryk
-              </li>
-              <li class="fragment">Chcemy by spełniał swoją rolę</li>
-            </ul>
-          </section> -->
         </section>
 
         <section data-background="#d57b7b">
@@ -251,8 +273,10 @@
           <section>
             <p>To co robimy z tymi błędami 🤔</p>
             <ol>
-              <li class="fragment">Nic</li>
-              <li class="fragment">Ładny modal + wyślij proszę email</li>
+              <li class="fragment">Nic 👌</li>
+              <li class="fragment">
+                Ładny modal + <em>please contact support</em>
+              </li>
               <li class="fragment">
                 <strong>Ładny modal + automatyczne raportowanie</strong>
               </li>
@@ -269,28 +293,92 @@
             <p>Przypominajka/wyjaśnienie</p>
             <img src="img/sch/error.png" />
           </section>
-          <section>Efekt skali</section>
+          <section>
+            Efekt skali
+            <h1>📈</h1>
+          </section>
           <section>
             <p>Jak?</p>
             <ul>
               <li class="fragment">
-                Z pomocą narzędzi: Sentry, LogRocket etc.
-              </li>
-              <li class="fragment">
-                Po swojemu: własny system do raportowania
+                Gotowe narzędzia
+                <br /><small
+                  >(np. Datadog, Sentry, LogRocket, New Relic, etc.)</small
+                >
               </li>
             </ul>
-            <p class="fragment">
-              Cel: statystyka, reprodukcja, zaraportowanie, naprawa
-            </p>
-            <aside class="notes">
-              <li>BANAŁ</li>
-              <li>może tak</li>
-              <li>a moze tak</li>
-            </aside>
           </section>
           <section>
             <img src="img/tools/sentry.jpg" />
+          </section>
+          <section>
+            <img src="img/tools/logrocket.png" />
+          </section>
+          <section>
+            <p>Jak?</p>
+            <ul>
+              <li>
+                Gotowe narzędzia
+                <br /><small
+                  >(np. Datadog, Sentry, LogRocket, New Relic, etc.)</small
+                >
+              </li>
+              grtafa
+              <li>
+                Własne raportowanie do bazy danych + system do przeglądania
+                <br /><small>(np. Grafana, JIRA?)</small>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4>Front-end</h4>
+            <pre><code data-line-numbers="|3-7|11">// logErrorService.js
+
+const reportError = (error) => {
+  axios.post("/api/2.0/report-exception", {
+    error: JSON.stringify(error)
+  })
+}
+
+// someCodeFile.js
+
+try {...} catch (e) { reportError(e); }
+
+</code></pre>
+          </section>
+          <section>
+            <h4>Back-end</h4>
+            <pre><code data-line-numbers="|6-7">// errorService.ts
+
+export class ErrorController {
+  @Post()
+  report(@Body() reportErrorDto: ReportErrorDto): string {
+    // Myk do bazy danych
+    this.errorService.report(reportErrorDto);
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <center><img src="img/sch/logs.png" width="100%"" /></center>
+          </section>
+          <section>
+            <center>
+              <img src="img/tools/grafana_dash.png" width="50%"" /> <img
+              src="img/tools/grafana_log.png" width="50%"" />
+            </center>
+          </section>
+          <section>
+            <p>Cel?</p>
+            <ul>
+              <li class="fragment">Możliwie szybka reprodukcja</li>
+              <li class="fragment">Statystyka (!)</li>
+              <li class="fragment">Alerting (!)</li>
+              <li class="fragment">
+                Unikamy zawracania 🎸 userowi
+                <span class="fragment">(staramy się)</span>
+              </li>
+            </ul>
           </section>
         </section>
 
@@ -302,12 +390,20 @@
             <p>Pułapka #1</p>
             <p><strong>Logujemy za mało</strong></p>
             <aside class="notes">
-              <li>BANAŁ</li>
-              <li>klasyk</li>
+              <li>to tylko na rozgrzewkę</li>
+              <li>TYCZY SIĘ PRZEDE WSZYSTKIM WŁASNYCH</li>
+              <li>ale nie tylko</li>
             </aside>
           </section>
+
+          <!-- <section>
+            <center>
+              <img src="img/bledy/weak_error.png" />
+            </center>
+          </section> -->
+
           <section>
-            <pre><code data-line-numbers="4-8|13-21|23-27|5-7|18-20" data-trim>class ApiService {
+            <pre><code data-line-numbers="13-21|18-21|4-8" data-trim>class ApiService {
 	async call() {
 		const response = await fetch("...");
 		if (!response.ok) {
@@ -325,15 +421,10 @@ function process() {
 		  // ...
 	  })
 	  .catch((error) => {
-		  // ?
+      // Raportujemy błąd
+      reportError(error);
 	  });
 }
-
-document
-	.querySelector("button")
-	.addEventListener("click", () => {
-		process();
-	});
   </code></pre>
           </section>
           <section>
@@ -349,29 +440,21 @@ document
             <p class="fragment">Jaki ticket z tego wyjdzie?</p>
           </section>
           <section>
+            <center><img src="img/bledy/weak_error.png" /></center>
+          </section>
+          <section>
             <p>Co pomoże (łatwe)?</p>
             <ul>
               <li class="fragment">Pełny stack trace</li>
-
               <li class="fragment">URL / historia URLi (route-ów)</li>
-
               <li class="fragment"><code>navigator.*</code></li>
             </ul>
           </section>
           <section>
-            <p>Co jeszcze pomoże?</p>
-            <ul>
-              <li class="fragment">odbitka feature flag</li>
-              <li class="fragment">ewaluacja A/B</li>
-            </ul>
-          </section>
-        </section>
-        <section data-background="#d57b7b">
-          <section>
-            <p>Stack trace</p>
+            <p>Stack trace - da się lepiej?</p>
           </section>
           <section>
-            <pre><code data-line-numbers="1-11|13-21|23-27|5-7|18-20" data-trim>class ApiService {
+            <pre><code data-line-numbers="5-7|18-20|23-27" data-trim>class ApiService {
   async call() {
     const response = await fetch("...");
     if (!response.ok) {
@@ -391,7 +474,14 @@ function process() {
     .catch((error) => {
       console.log(error.stack)
     });
-}</code></pre>
+}
+
+document
+	.querySelector("button")
+	.addEventListener("click", () => {
+		process();
+	});
+</code></pre>
           </section>
           <section><img src="img/bledy/1.png" width="100%" /></section>
           <section>
@@ -403,9 +493,11 @@ function process() {
   });
 }
 
-document.querySelector("button").addEventListener("click", () => {
-  process();
-});
+document
+	.querySelector("button")
+	.addEventListener("click", () => {
+		process();
+	});
 </code></pre>
           </section>
           <section><img src="img/bledy/3.png" /></section>
@@ -423,8 +515,29 @@ document.querySelector("button").addEventListener("click", () => {
           </section>
           <section><img src="img/bledy/4.png" /></section>
           <section>
+            Trochę lepiej
+            <center><img src="img/bledy/weak_error_b1.png" /></center>
+          </section>
+          <section>
+            Jeszcze lepiej
+            <center><img src="img/bledy/weak_error_b2.png" /></center>
+          </section>
+          <section>
+            <p>Co jeszcze pomoże?</p>
+            <ul>
+              <li class="fragment">odbitka feature flag</li>
+              <li class="fragment">ewaluacja A/B</li>
+              <li class="fragment">identyfikacja użytkownika</li>
+            </ul>
+          </section>
+          <section>
+            <center><img src="img/bledy/weak_error_b3.png" /></center>
+          </section>
+          <section>
             Nie logujmy za mało...
-            <aside class="notes"></aside>
+            <aside class="notes">
+              Ogólnie ciężko zalogować za mało. To są lekkie i łatwe dane
+            </aside>
           </section>
         </section>
         <section data-background="#d57b7b">
@@ -436,25 +549,36 @@ document.querySelector("button").addEventListener("click", () => {
             </aside>
           </section>
           <section>
-            <img src="img/bledy/2.png" />
-            <p class="fragment">Co tu jest nie tak?</p>
+            <img src="img/bledy/token_in_log.png" width="100%" />
+            <p>Co tu jest nie tak?</p>
           </section>
           <section>
-            <pre><code data-trim>{
-  "exception": {
-    "code": "403",
-    "error": "Unauthorized"
-  },
-  "request": {
-    "method": "POST",
-    "resource": "/api/tables/1341",
-    "body": {
-      "operation": "register",
-      "withToken": "NjEzMjMxNTg2MDM4NTAxMTY1MzA3MzM3MDYwNDQ3NzU1ODM2OTc5NDE0MjgxODM1"
-    }
-  }
-}</code></pre>
+            <img src="img/bledy/2.png" />
+            <p>A tu?</p>
+            <aside class="notes">
+              <li>
+                załóżmy że jest to ticket który wleciał z raportowania błędów
+              </li>
+              <li>akurat przykład z JIRA</li>
+              <li>account manager pinguje nas z tym błędem że OMG</li>
+              <li>
+                bierzemy ticket, patrzymy co się dzieje, próbujemy reprodukować
+              </li>
+              <li>
+                okazuje się że klient w polu tekstowym użył jakiegoś dziwnego
+                unicodowego zagranicznego znaczka
+              </li>
+              <li>i że naprawicie, ale że na razie to nie wolmo</li>
+              <li>
+                account bierze ticket i pisze zadowolony maila klientowi że ten
+                jego MERGE AND ACQUISITION to będzie naprawiony
+              </li>
+              <li>
+                klient też jest zadowolony, czyta maila i dzwoni do prawnika
+              </li>
+            </aside>
           </section>
+
           <section>
             <p>Konstruując błędy, raporty, logi:</p>
             <p class="fragment">✂️</p>
@@ -470,23 +594,26 @@ document.querySelector("button").addEventListener("click", () => {
         </section>
         <section data-background="#d57b7b">
           <section>
-            <p>Pułapka #3</p>
-            <p><strong>Brak informacji od użytkownika</strong></p>
+            <p>
+              <strong>Wspomóc się użytkownikiem to aż nie taki grzech</strong>
+            </p>
             <aside class="notes">
-              <li>Pod spodem ładnie wysyła się błąd</li>
-              <li>A na wierzchu?</li>
+              <li>ok, mieliśmy mu nie zawracać gitary</li>
+              <li>i robimy system który sam będzie zgłaszał</li>
+              <li>ale czemu ładnie nie spytać</li>
             </aside>
           </section>
           <section><img src="img/bledy/5.png" width="100%" /></section>
           <section>
             <p>Cel?</p>
-            <p class="fragment">Maksymalizacja reprodukowalności</p>
+            <li class="fragment">Możliwie szybka reprodukcja</li>
           </section>
           <section><img src="img/bledy/6.png" width="100%" /></section>
           <section>
-            <h2>Obserwacja:</h2>
+            <h3>Obserwacja</h3>
             <p>
-              Użytkownicy częściej niż nam się wydaje podają dodatkowe dane.
+              Użytkownicy częściej niż nam się wydaje podają kontekst/dodatkowe
+              dane.
             </p>
             <p>
               <strong>Użytkownicy płacący jeszcze częściej.</strong>
@@ -526,8 +653,74 @@ document.querySelector("button").addEventListener("click", () => {
         </section>
         <section data-background="#d57b7b">
           <section>
-            <p>Pułapka #4</p>
-            <p><strong>Niespójny system logowania</strong></p>
+            <p>Co jeszcze?</p>
+            <aside class="notes"></aside>
+          </section>
+
+          <section data-background="white">
+            <img src="img/bledy/toomuch_1.png" />
+          </section>
+
+          <section data-background="white">
+            <center>
+              <img src="img/bledy/toomuch_2.png" width="50%" />
+            </center>
+          </section>
+          <section>
+            <p>Granice błędów w aplikacji</p>
+            <aside class="notes"></aside>
+          </section>
+          <section>
+            <pre style="width: 100%"><code>
+              <script type="text/template">function Root() {
+  return (
+    <Routes>
+      <Route path="/companies/*" element={<CompaniesRoutes />} />
+      <Route path="/users/*" element={<UsersRoutes />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<div>404</div>} />
+    </Routes>
+  );
+}</script></code></pre>
+
+            <pre style="width: 100%"><code>
+              <script type="text/template">function CompaniesRoutes() {
+  return (
+    <Routes>
+      <Route path="/:companyId" element={<CompanyDetails />} />
+      <Route path="/new" element={<CompanyNew />} />
+    </Routes>
+  );
+}</script></code></pre>
+          </section>
+          <section>
+            <center class="r-stack">
+              <img src="img/bledy/boundary1.png" />
+              <img class="fragment" src="img/bledy/boundary2.png" />
+            </center>
+          </section>
+          <section>
+            <pre style="width: 100%"><code data-line-numbers="3,8">
+              <script type="text/template">function CompaniesRoutes() {
+  return (
+    <AppErrorBoundary boundaryId="COMPANIES">
+      <Routes>
+        <Route path="/:companyId" element={<CompanyDetails />} />
+        <Route path="/new" element={<CompanyNew />} />
+      </Routes>
+    </AppErrorBoundary>
+  );
+}</script></code></pre>
+            <pre style="width: 100%"><code>
+  <script type="text/template">// ...
+  const { boundaryId } = useAppErrorBoundary();
+  const onError = (error) => reportError(error, { boundaryId });
+// ...</script></code></pre>
+            <aside class="notes">react-error-boundary</aside>
+          </section>
+          <section>
+            <p>Albo...</p>
+            <p class="fragment">Niespójna struktura wyjątków</p>
             <aside class="notes"></aside>
           </section>
           <section>
@@ -546,46 +739,43 @@ class ErrorWrapper extends Error {
   }
 }
 
-function doSomething1() {
+function akcja1() {
   // ...
-  throw new ErrorWrapper("Unauthorized", 401);
+  reportError(new ErrorWrapper("Unauthorized", 401));
 }
 
-function doSomething2() {
+function akcja2() {
   // ...
-  throw { code: 401, message: "Unauthorized" };
+  reportError({ code: 401, message: "Unauthorized" });
 }
 
-function doSomething3() {
+function akcja3() {
   // ...
-  throw new Error(JSON.stringify(
-    { code: 401, message: "Unauthorized" }
-  ));
+  reportError({ 
+    error: JSON.stringify({
+      code: 401, message: "Unauthorized"
+    })
+  })
 }
-
             </code></pre>
           </section>
         </section>
         <section data-background="#d57b7b">
           <section>
-            <p>Pułapka #5</p>
-            <p><strong>Testowanie raportowania</strong></p>
+            <p>Jeszcze jedna pułapka...</p>
+            <p class="fragment">
+              <strong>Co jeśli logi nie przychodzą?</strong>
+            </p>
+            <aside class="notes">Testowanie</aside>
           </section>
           <section>
-            <center>
-              <img src="img/tools/mem.jpg" />
-            </center>
+            <h1>🥸</h1>
             <aside class="notes">
               <li>odpalacie system, stawiacie sentry czy coś tam</li>
               <li>i nie ma błędów</li>
               <li>...i nie ma błędów</li>
               <li>to dobrze, prawda?</li>
               <li>warto napisać test który zmockowane</li>
-            </aside>
-          </section>
-          <section>
-            <h1>🥸</h1>
-            <aside class="notes">
               <li>
                 a bardziej warto napisać e2e który będzie siedział w waszym CI i
                 raz na miesiąc faktycznie wysypie stronę i zgłosi faktyczny
@@ -598,8 +788,8 @@ function doSomething3() {
         <section data-background="#d57b7b">
           <p>Podsumowanie części o błędach</p>
           <ul>
-            <li class="fragment">Minimum do reprodukcji</li>
-            <li class="fragment">Uważajmy co raportujemy</li>
+            <li class="fragment">Logujmy sporo...</li>
+            <li class="fragment">...tylko bez wrażliwych danych</li>
             <li class="fragment">Pełne zrzuty stosów</li>
             <li class="fragment">Spójna forma</li>
             <li class="fragment">Testujmy!</li>
@@ -633,25 +823,22 @@ function doSomething3() {
               </li>
               <li class="fragment">Wąskie gardła, blokujące taski</li>
               <li class="fragment">Wielkość pobieranych danych</li>
-              <li class="fragment">Chrome Lighthouse</li>
-              <li class="fragment">...</li>
+            </ul>
+            <p class="fragment">Jak?</p>
+            <ul>
+              <li class="fragment">Dynamicznie (performance, Cypress)</li>
+              <li class="fragment">Statycznie (Lighthouse etc.)</li>
             </ul>
           </section>
           <section>
-            Czy to odpowiada na pytanie?
+            Czy to wystarczy do odpowiedzi na pytanie? ☝️
             <aside class="notes">
+              <li>"Czy aplikacja jest wystarczająco szybka"</li>
               <li>Może odpowiada, ale nie używamy wtedy wcale observability</li>
             </aside>
           </section>
         </section>
         <section data-background="#3c3355">
-          <section>
-            <p>Pułapka #1</p>
-            <p>
-              <strong>Mierzymy tylko szczegóły</strong>
-            </p>
-          </section>
-
           <section>
             <p>Co tak naprawdę nas interesuje?</p>
             <p class="fragment">A gdyby tak E2E?</p>
@@ -705,7 +892,7 @@ function doSomething3() {
               </li>
               <li class="fragment">Raportowanie pełnego czasu interakcji</li>
               <li class="fragment">Od interaktywności do interaktywności</li>
-              <li class="fragment">+ dopełnienie suchymi danymi</li>
+              <li class="fragment">(+ dopełnienie "suchymi" danymi)</li>
             </ul>
           </section>
           <section>
@@ -722,24 +909,26 @@ function doSomething3() {
           </section>
 
           <section>
-            <pre><code data-line-numbers="|2-5"><script type="text/template">const Routes = () => {
+            <pre><code data-line-numbers="5-6"><script type="text/template">const Routes = () => {
+  const location = useLocation();
+
   useEffect(() => {
     const interaction = getInteraction(location.path);
     startInteraction(location.path);
   }, [location])
   
   return (
-    <Switch>
+    <Routes>
       <Route path="/tables" element={...} />
       <Route path="/users" element={...} />
-    </Switch>
+    </Routes>
   );
 }
 
 </script></code></pre>
           </section>
           <section>
-            <pre><code data-line-numbers="|2-5,10"><script type="text/template">const View = () => {
+            <pre><code data-line-numbers="2-5,10"><script type="text/template">const View = () => {
   const loadUsers = useCallback(() => {
     startInteraction('LOADING_USERS');
     fetchUsersFromApi(...);
@@ -828,6 +1017,46 @@ function doSomething3() {
               <li>Z autopsji: ☝️ działa całkiem nieźle</li>
             </aside>
           </section>
+          <section>
+            <pre
+              style="width: 100%"
+            ><code data-line-numbers><script type="text/template">interactionTracker.onInteractionFinish((interaction) => {
+  axios.post("/api/2.0/report-performance", { interaction })
+});</script></code></pre>
+            <pre
+              style="width: 100%"
+            ><code data-line-numbers><script type="text/template">export class PerformanceController {
+  @Post()
+  report(@Body() reportDto: ReportDto): string {
+    // Myk do bazy danych
+    this.performanceService.report(reportDto);
+  }
+}
+</script></code></pre>
+            <div
+              class="fragment"
+              style="
+                background-color: white;
+                text-align: center;
+
+                padding: 0.5em;
+              "
+            >
+              <center>
+                <img src="img/sch/logs.png" style="height: 5em" />
+              </center>
+            </div>
+          </section>
+          <section>
+            <center>
+              <img src="img/perf/grafana_perf_log.png" />
+            </center>
+          </section>
+          <section>
+            <center>
+              <img src="img/perf/grafana_perf_graph.png" />
+            </center>
+          </section>
         </section>
         <section data-background="#3c3355">
           <section>
@@ -841,13 +1070,11 @@ function doSomething3() {
             <p>Wąskie gardła</p>
             <ul>
               <li class="fragment">Możemy dłubać ręcznie</li>
-              <li class="fragment">...PerformanceObserver API</li>
+              <li class="fragment">...<code>PerformanceObserver</code></li>
             </ul>
           </section>
           <section>
-            <pre><code data-line-numbers>const observer = new PerformanceObserver((list) => {
-  console.log(list.getEntries()[0]);
-});
+            <pre><code data-line-numbers>const observer = new PerformanceObserver(...);
 
 observer.observe({
   type: "longtask",
@@ -855,12 +1082,7 @@ observer.observe({
             </code></pre>
           </section>
           <section>
-            <pre><code data-trim data-line-numbers="|1-3|5-11|13-19"><script type="text/template">
-<body>
-  <div>test</div>
-</body>
-
-const observer = new PerformanceObserver((list) => {
+            <pre><code data-trim data-line-numbers="|1-3|5-7|9-15"><script type="text/template">const observer = new PerformanceObserver((list) => {
   console.log(list.getEntries()[0]);
 });
 
@@ -909,38 +1131,155 @@ observer.observe({
         </section>
         <section data-background="#3c3355">
           <section>
-            <p>Pułapka #2</p>
-            <p><strong>Pomiar wpływa na pomiar</strong></p>
+            <p>Kolejna pułapka</p>
+            <p class="fragment"><strong>Pomiar wpływa na pomiar</strong></p>
           </section>
           <section>
-            <p>TODO: Przykład</p>
-          </section>
-          <section>
-            <div>Rozwiązanie</div>
+            <div>Jak to rozwiązać?</div>
             <ul>
-              <li>Kolejkowanie</li>
-              <li>Sampling</li>
+              <li class="fragment">Kolejkowanie</li>
+              <li class="fragment">Sampling</li>
+            </ul>
+          </section>
+          <section>
+            <p>Coś jeszcze?</p>
+            <p>Nazywanie interakcji</p>
+            <ul>
+              <li class="fragment" style="color: orangered">
+                <code>LOAD_TABLE</code>
+              </li>
+              <li class="fragment" style="color: white">
+                <code>customers.details_view.LOAD_TABLE</code>
+              </li>
             </ul>
           </section>
         </section>
-        <!-- <section data-background="#3c3355">
-          <section>
-            <p>Pułapka #3</p>
-            <p><strong>Kiepsko nazwane interakcje/scenariusze</strong></p>
-          </section>
-          <section>[SCREEN - "page load time"]</section>
-        </section> -->
 
         <section data-background="#3c3355">
           <p>Podsumowanie części wydajności</p>
           <ul>
             <li class="fragment">Pomiary E2E</li>
+
+            <small
+              ><li class="fragment" style="margin-left: 1em">
+                (+ wąskie gardła)
+              </li>
+              <li class="fragment" style="margin-left: 1em">(+ zasoby)</li>
+              <li class="fragment" style="margin-left: 1em">
+                (+ dodatkowe metadane)
+              </li></small
+            >
+
+            <li class="fragment"><code>PerformanceObserver</code></li>
             <li class="fragment">Organizacja interakcji</li>
-            <li class="fragment">PerformanceObserver</li>
           </ul>
         </section>
         <section data-background="#185642">
-          <p>Część #3: Analityka</p>
+          <section>
+            <p>Jak to wszystko ląduje w jednym wiaderku?</p>
+            <h1>🪣</h1>
+          </section>
+          <section>
+            <ul>
+              <li>Raportowanie błędów</li>
+              <li>Metryki wydajności</li>
+              <li class="fragment highlight-green">Analityka zdarzeń</li>
+            </ul>
+          </section>
+          <section>
+            <pre><code data-line-numbers="|8-10|2-4|5">const reportClick = (event) => {
+  const report = () => axios.post("/api/report-event", {
+    event: serializeEvent(event)
+  });
+  queueReport(report);
+}
+
+document.addEventListener('click', (e) => {
+  reportClick(e);
+});
+</code></pre>
+          </section>
+          <section>
+            <pre><code data-line-numbers><script type="text/template">window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-XXXXXXX');
+            </script></code></pre>
+          </section>
+          <section data-background="#74c9ad">
+            <img src="img/sch/logs-compl1.png" width="100%" />
+          </section>
+          <section>
+            <p>I co z tego? 🤨</p>
+          </section>
+          <section data-background="#74c9ad">
+            <div class="r-stack">
+              <img src="img/sch/logs-compl1.png" width="100%" />
+              <img
+                class="fragment"
+                src="img/sch/logs-compl2.png"
+                width="100%"
+              />
+            </div>
+            <aside class="notes">
+              Kiedyś klikało się filtry i pisało algorytmy
+            </aside>
+          </section>
+          <section>
+            <ul>
+              <li class="fragment" style="margin-bottom: 1em">
+                Znajdowanie powtarzalnie problematycznych obszarów aplikacji
+              </li>
+              <li class="fragment" style="margin-bottom: 1em">
+                Identyfikacja skali rażenia błędów
+              </li>
+              <li class="fragment" style="margin-bottom: 1em">
+                Optymalizacja wydajności (np. przy segmentacji geograficznej)
+              </li>
+              <li class="fragment" style="margin-bottom: 1em">
+                Przewidywanie rezygnacji (np. względem wydajności)
+              </li>
+
+              <aside class="notes">
+                <li>
+                  1 z historycznych danych wynika że najdłużej trwają interakcje
+                  z tego modułu? może trzeba zajrzeć w silnik tabelek?
+                </li>
+                <li>
+                  1 a może wciaż powtarzają się tam błędy 503, może trzeba
+                  zajrzeć w proxy wokół tego mikroserwisu?
+                </li>
+                <li>
+                  2 może błąd był błahy z raportu i niekrytyczny, ale z jakiegoś
+                  powodu po jego wystąpieniu userzy przestają korzystać
+                </li>
+                <li>
+                  3 z takich metryk może nam wyjść że akurat responsy z networku
+                  trwają najdłużej dla grupy z azji środkowej - trzeba dorzucić
+                  do pieca
+                </li>
+                <li>
+                  4 może to długie interakcje powodują że userzy odchodzą?
+                </li>
+              </aside>
+            </ul>
+          </section>
+          <section>...ale to wszystko zależy od jakości danych</section>
+          <section>
+            <p>Czyli</p>
+            <ul>
+              <li>Zbieranie kompletnych raportów błędów</li>
+              <small><li>+ ułatwienie sobie życia</li></small>
+              <li>Poprawne nagrywanie wydajności</li>
+            </ul>
+          </section>
+          <section>
+            <p>Pytania!</p>
+          </section>
+          <section>
+            <p>Idzcie i obserwujcie! 👋</p>
+          </section>
         </section>
       </div>
     </div>
@@ -955,6 +1294,10 @@ observer.observe({
       // - https://revealjs.com/config/
       Reveal.initialize({
         hash: true,
+
+        highlight: {
+          // beforeHighlight: (hljs) => hljs.registerLanguage("asdf"),
+        },
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],

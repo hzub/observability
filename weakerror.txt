@@ -1,0 +1,21 @@
+log-error-167542215528652
+
+{"error": "Error: Failed to fetch <URL>
+    at ApiService.call (test.js:5:29)
+    at process (test.js:12:26)
+    at HTMLButtonElement.<anonymous> (test.js:24:3)"}
+
+2023-09-22T09:22:19.866Z
+
+
+
+
+url_history
+
+https://nasza-aplikacja.com/users/details/643
+https://nasza-aplikacja.com/users/table
+https://nasza-aplikacja.com/dashboard/14664
+https://nasza-aplikacja.com/login
+
+
+{"flag.ourApp.nextGenUsersEnabled":true,"flag.ourApp.usePathRouting":false,"flag.ourApp.foobar":"1234"}
