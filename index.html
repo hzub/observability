@@ -28,12 +28,48 @@
           <strong class="text-blue-300">O</strong> jak Observability
           <p class="text-2xl">Hubert Zub, Future Conf 2023</p>
           <aside class="notes">
-            <li>nazywam się Hubert</li>
+            <li>jestem Hubert</li>
             <li>dziękuję za zaproszenie Andrzejowi</li>
             <li>z Białegostoku</li>
-            <li>Jutro o AI, dziś o JS</li>
-            <li>no właśnie - AI przetwarza sporo danych...</li>
-            <li>Bez tego żadna nowoczesna appka</li>
+            <li>zanim przejdę dalej</li>
+            <li>ta konferencja pół o JS, pół o AI</li>
+            <li>
+              no właśnie - jutro na tych deskach bedzie sporo mówione o machine
+              learningu, czyli o przetwarzaniu danych
+            </li>
+            <li>znajdowaniu korelacji, przewidywaniu zachowań, trendów etc.</li>
+            <li>
+              i tak trochę w tym temacie - jedną z mocnych gałęzi w dzisiejszym
+              internecie i w robieniu internetu jest analiza działań
+              użytkowników -
+            </li>
+            <li>
+              począwszy od zbierania cookiesów do remarketingu i profilowania
+              reklam
+            </li>
+            <li>
+              poprzez bardziej wyrafinowane techniki, czyli jakieś analizy
+              behawioralne użytkowników na stronach do tego żeby optymalizować
+              featury
+            </li>
+            <li>
+              głównie aplikacji webowych (w sumie teraz niemal tylko takie są)
+            </li>
+            <li>
+              minęły już też trochę czasy kiedy jak appka się wysypała to
+              jakiś modal żebrał o to by zgłosić to do supportu
+            </li>
+            <li>teraz powinna zaraportować się sama</li>
+            <li>
+              nieważne czy celem jest cookies, zbieranie błędów czy też
+              zbieranie danych do optymalizacji, nie ma żadnej dużej aplikacji
+              webowej która nie ma monitoringu
+            </li>
+            <li>
+              a żaden monitoring czy observability nie może się zadziać bez
+              wysyłanych z frontu danych
+            </li>
+            <li>i ja dzisiaj trochę o tym</li>
           </aside>
         </section>
         <section>
@@ -74,13 +110,19 @@
             />
           </div>
           <aside class="notes">
-            <li>data warehousy, lakes, przetwarzanie danych</li>
-            <li>eksabajty danych</li>
+            <li>od 2015 roku</li>
+            <li>FRONTEND DEV W DATABRICKS!</li>
             <li>
               databricks - możliwe że nie słyszeliście, ale jesteście klientem
               firmy która jest naszym klientem
             </li>
+            <li>data warehousy, lakes, przetwarzanie danych</li>
             <li>apple, adobe, hp, toyota, siemens, cisco</li>
+            <li>eksabajty danych</li>
+            <li>
+              dużo klientów przetwarza u nas monitoring swoich stron - stąd też
+              dużo myślenia o tym i pomysł na prezentacje
+            </li>
           </aside>
         </section>
         <section>
@@ -89,20 +131,22 @@
               ><strong class="text-orange-300">JS</strong> jak JavaScript, </span
             ><strong class="text-blue-300">O</strong> jak Observability
             <aside class="notes">
+              <li>zanim pójdziemy dalej</li>
               <li>teraz by wypadała definicja</li>
               <li>wszyscy lubią definiować</li>
               <li>i mogą się o to bić (testy e2e, framework vs biblioteka)</li>
-              <li>zdefiniujmy sami</li>
+              <li>a my zdefiniujmy sami</li>
             </aside>
           </section>
           <section>
-            <div>Wypuszczamy aplikację na produkcję</div>
+            <div>Wypuszczamy aplikację na produkcję.</div>
             <div class="fragment">
               Co <strike style="opacity: 0.3">chcemy</strike>musimy wiedzieć o
               dalszych jej losach?
             </div>
 
             <aside class="notes">
+              <li>"Wypuszczamy aplikację na produkcję." DALEJ</li>
               <li>czy działa</li>
               <li>a co to znaczy</li>
               <li>że userzy mogą klikać w featury</li>
@@ -111,7 +155,7 @@
               <li>że te featury są znajdowalne przez userów!</li>
             </aside>
           </section>
-          <section>
+          <!-- <section>
             A kto tego potrzebuje?
             <aside class="notes">
               <li>
@@ -122,11 +166,12 @@
               <li>albo czy aplikacja szybko działa</li>
               <li>albo czy featury które tworzymy w ogóle są wykorzystywane</li>
             </aside>
-          </section>
+          </section> -->
           <section>
-            <p>Ok, to ustalmy roboczo</p>
+            <p>Więc ustalmy roboczo:</p>
             <p>po pierwsze: <strong class="fragment">błędy</strong></p>
             <aside class="notes">
+              <li>CHCEMY wiedzieć czy są błędy</li>
               zrobiliście aplikację, wiecie że jest bez błędów bo przecież
               popisaliście testy, wysyłacie na produkcję. Checie słyszeć o
               błędach? No nie. Ale wasz account już tak, bo jak błędy będą
@@ -134,15 +179,16 @@
             </aside>
           </section>
           <section>
-            <p>Po drugie: <strong class="fragment">performance</strong></p>
+            <p>Po drugie: <strong class="fragment">wydajność</strong></p>
             <aside class="notes">
+              <li>CHCEMY wiedzieć czy są szybko działa</li>
               jak pisaliście apkę to przecież śmigała szybko. A nawet jak było
               coś wolno to zoptymalizowaliście. Przeskanowaliście web vitals,
               wszystko śmiga. To po co się tym przejmować jak jest szybko. Jak
               coś wolno to wiadomo że to wina tych na backendzie. No ale
               tworzyliście appkę na jakimś macbooku który ma 12 rdzeni i 32 gb
               ramu bo wam firma kupiła. A user może mieć biurowy komputer na
-              przysłowiowy węgiel. I póki.
+              przysłowiowy węgiel.
             </aside>
           </section>
           <section>
@@ -150,6 +196,7 @@
               Po trzecie: <strong class="fragment">analityka zdarzeń</strong>
             </p>
             <aside class="notes">
+              <li>CHCEMY wiedzieć gdzie klikają userzy</li>
               czy potrzebujecie tego? Przecież UX/UI zaprojektował, narysował,
               frontend jest postawiony wg designu. Potrzebujecie wiedzieć jak
               userzy klikają w które przyciski etc.? Może tak, może nie, ale
@@ -159,10 +206,11 @@
             </aside>
           </section>
           <section>
-            <p>
-              Czemu te rzeczy <em><strong>obserwujemy</strong></em
-              >?
-            </p>
+            <p>Więc albo się tego dowiemy "ręcznie"...</p>
+            <p class="fragment">...albo automatycznie</p>
+          </section>
+          <section>
+            <p>Czemu dopiero na produkcji?</p>
             <aside class="notes">
               <li>Czemu nie sprawdzimy tego wcześniej</li>
               <li>tylko teraz?</li>
@@ -179,7 +227,7 @@
               <li class="fragment">Metryki wydajności</li>
               <li class="fragment">Analityka zdarzeń</li>
             </ul>
-            <p class="fragment">...obserwowane na produkcji</p>
+            <p class="fragment">...na środowisku produkcyjnym.</p>
             <aside class="notes">
               <li>
                 to jest robocza definicja na potrzeby prezentacji, wierzę mocno
@@ -190,11 +238,11 @@
           </section>
 
           <section>
-            <div>Z czego dziś...</div>
-            <ul>
+            <div>Z czego dziś:</div>
+            <ul class="fragment">
               <li>Raportowanie błędów</li>
               <li>Metryki wydajności</li>
-              <li style="opacity: 0.3"><strike>Analityka zdarzeń</strike></li>
+              <li style="opacity: 0.3">Analityka zdarzeń</li>
             </ul>
             <aside class="notes">
               <li>
@@ -223,6 +271,7 @@
               </li>
               <li>DWA</li>
               <li>nie będę wam mówił ze warto</li>
+              <li>chociaż postaram się was przekonać</li>
               <li>bo to troche jak prezka o tym żę warto pisać testy</li>
             </aside>
           </section>
@@ -231,10 +280,13 @@
 
             <aside class="notes">
               <li>nieważne jak zestawicie sobie zestaw do observability</li>
-              <li>na co zwrócić uwagę</li>
+              <li>na co zwrócić uwagę JAKO FRONTEND</li>
               <li>na jakie pułapki uważać</li>
               <li>jakie ciekawe triki zastosować</li>
-              <li>i jak podejść do niektórych niebanalnych tematów</li>
+              <li>
+                i jak spojrzeć na to trochę bardziej globalnie by mieć cały czas
+                z tyłu głowy że to jest ważne
+              </li>
               <!-- <li>dotkniemy każdego tematu ze strony frontendu</li>
               <li>zwrócić uwagę na uniwersalne praktyki, pułapki etc</li>
               <li>pokazać ciekawostki</li>
@@ -242,7 +294,7 @@
               <li>czyli JAK PISAĆ APKI KTÓRE DA SIĘ OBSERWOWAĆ</li>
               <li>
                 cel: jakaś checklista w głowie, jak bedzie chwila to sobie
-                spojrzycie na swój system
+                spojrzycie na swój system i coś może porpawicie
               </li>
               <!--
               <li>
@@ -264,18 +316,18 @@
               <li>
                 Już rozmawialiśmy - wypuszczacie bezbłędne aplikacje? JAk nie to
               </li>
-              <li>
+              <!-- <li>
                 Zakładamy że mamy super CI więc żadne błędy czasu budowy:
                 syntaxy etc. nie przejdą więc interesują nas tylko runtime’y
-              </li>
+              </li> -->
             </aside>
           </section>
           <section>
-            <p>To co robimy z tymi błędami 🤔</p>
+            <p>Ok, błędy na produkcji są - to co z nimi? 🤔</p>
             <ol>
               <li class="fragment">Nic 👌</li>
               <li class="fragment">
-                Ładny modal + <em>please contact support</em>
+                Ładny modal + <em>"Please contact support </em>🥺<em>"</em>
               </li>
               <li class="fragment">
                 <strong>Ładny modal + automatyczne raportowanie</strong>
@@ -294,9 +346,14 @@
             <img src="img/sch/error.png" />
           </section>
           <section>
-            Efekt skali
-            <h1>📈</h1>
+            <p>Są błędy i błędy.</p>
+            <p class="fragment">Które raportujemy?</p>
+            <aside class="notes">
+              <li>Te runtime - z naszej appki</li>
+              <li>Te z API - e2eowo do raportyowania, o tym jeszcze potem</li>
+            </aside>
           </section>
+
           <section>
             <p>Jak?</p>
             <ul>
@@ -309,7 +366,14 @@
             </ul>
           </section>
           <section>
-            <img src="img/tools/sentry.jpg" />
+            <center>
+              <img src="img/tools/sentry_embed.png" />
+            </center>
+          </section>
+          <section>
+            <center>
+              <img src="img/tools/sentry.jpg" />
+            </center>
           </section>
           <section>
             <img src="img/tools/logrocket.png" />
@@ -323,9 +387,9 @@
                   >(np. Datadog, Sentry, LogRocket, New Relic, etc.)</small
                 >
               </li>
-              grtafa
               <li>
-                Własne raportowanie do bazy danych + system do przeglądania
+                Własne raportowanie: UI -> API -> baza danych + system do
+                przeglądania
                 <br /><small>(np. Grafana, JIRA?)</small>
               </li>
             </ul>
@@ -372,11 +436,11 @@ export class ErrorController {
             <p>Cel?</p>
             <ul>
               <li class="fragment">Możliwie szybka reprodukcja</li>
-              <li class="fragment">Statystyka (!)</li>
-              <li class="fragment">Alerting (!)</li>
+              <li class="fragment">Statystyka</li>
+              <li class="fragment">Alerting</li>
               <li class="fragment">
                 Unikamy zawracania 🎸 userowi
-                <span class="fragment">(staramy się)</span>
+                <span class="fragment">(trochę)</span>
               </li>
             </ul>
           </section>
@@ -484,6 +548,7 @@ document
 </code></pre>
           </section>
           <section><img src="img/bledy/1.png" width="100%" /></section>
+          <section>Możemy lepiej?</section>
           <section>
             <pre><code data-line-numbers="2|3-6" data-trim>function process() {
   const initiatorStack = new Error().stack;
@@ -534,6 +599,12 @@ document
             <center><img src="img/bledy/weak_error_b3.png" /></center>
           </section>
           <section>
+            <p>
+              Notka: im bardziej "gotowe" (kosztowne) narzędzie, tym mniej
+              będziecie się tym ☝️ musieli martwić
+            </p>
+          </section>
+          <section>
             Nie logujmy za mało...
             <aside class="notes">
               Ogólnie ciężko zalogować za mało. To są lekkie i łatwe dane
@@ -543,14 +614,14 @@ document
         <section data-background="#d57b7b">
           <section>
             <p>Pułapka #2</p>
-            <p><strong>Logujemy za dużo</strong></p>
+            <p class="fragment"><strong>Logujemy za dużo</strong></p>
             <aside class="notes">
               <li>można?</li>
             </aside>
           </section>
           <section>
             <img src="img/bledy/token_in_log.png" width="100%" />
-            <p>Co tu jest nie tak?</p>
+            <p>Ticket w systemie ☝️. Co tu jest nie tak?</p>
           </section>
           <section>
             <img src="img/bledy/2.png" />
@@ -559,7 +630,6 @@ document
               <li>
                 załóżmy że jest to ticket który wleciał z raportowania błędów
               </li>
-              <li>akurat przykład z JIRA</li>
               <li>account manager pinguje nas z tym błędem że OMG</li>
               <li>
                 bierzemy ticket, patrzymy co się dzieje, próbujemy reprodukować
@@ -584,10 +654,10 @@ document
             <p class="fragment">✂️</p>
             <aside class="notes">
               <li>Zwyczajowo wycinamy dane użytkownika</li>
-              <li>Wystarczą: identyfikatory, URLe, klucze</li>
-              <li>Jak nie, to przemyślmy architekturę</li>
-              <li>Z wyjątków: wycinajmy tokeny, klucze, hasła etc.</li>
+              <li>Wystarczą: identyfikatory, URLe</li>
+              <li>Wycinajmy tokeny, klucze, hasła etc.</li>
               <li>Im mniej danych użytkownika tym lepiej</li>
+              <li>W jego bazie danych</li>
               <li>A skoro o userze mowa</li>
             </aside>
           </section>
@@ -595,7 +665,7 @@ document
         <section data-background="#d57b7b">
           <section>
             <p>
-              <strong>Wspomóc się użytkownikiem to aż nie taki grzech</strong>
+              <strong>Czy to grzech wspomóc się użytkownikiem?</strong>
             </p>
             <aside class="notes">
               <li>ok, mieliśmy mu nie zawracać gitary</li>
@@ -610,12 +680,12 @@ document
           </section>
           <section><img src="img/bledy/6.png" width="100%" /></section>
           <section>
-            <h3>Obserwacja</h3>
+            <h3 style="text-transform: none">Obserwacja (*)</h3>
             <p>
               Użytkownicy częściej niż nam się wydaje podają kontekst/dodatkowe
               dane.
             </p>
-            <p>
+            <p class="fragment">
               <strong>Użytkownicy płacący jeszcze częściej.</strong>
             </p>
           </section>
@@ -667,6 +737,7 @@ document
             </center>
           </section>
           <section>
+            <p>Divide and conquer!</p>
             <p>Granice błędów w aplikacji</p>
             <aside class="notes"></aside>
           </section>
@@ -719,7 +790,7 @@ document
             <aside class="notes">react-error-boundary</aside>
           </section>
           <section>
-            <p>Albo...</p>
+            <p>Kolejny ból</p>
             <p class="fragment">Niespójna struktura wyjątków</p>
             <aside class="notes"></aside>
           </section>
@@ -766,16 +837,17 @@ function akcja3() {
             <p class="fragment">
               <strong>Co jeśli logi nie przychodzą?</strong>
             </p>
-            <aside class="notes">Testowanie</aside>
-          </section>
-          <section>
-            <h1>🥸</h1>
             <aside class="notes">
               <li>odpalacie system, stawiacie sentry czy coś tam</li>
               <li>i nie ma błędów</li>
               <li>...i nie ma błędów</li>
               <li>to dobrze, prawda?</li>
               <li>warto napisać test który zmockowane</li>
+            </aside>
+          </section>
+          <section>
+            <h1>🥸</h1>
+            <aside class="notes">
               <li>
                 a bardziej warto napisać e2e który będzie siedział w waszym CI i
                 raz na miesiąc faktycznie wysypie stronę i zgłosi faktyczny
@@ -789,7 +861,7 @@ function akcja3() {
           <p>Podsumowanie części o błędach</p>
           <ul>
             <li class="fragment">Logujmy sporo...</li>
-            <li class="fragment">...tylko bez wrażliwych danych</li>
+            <li class="fragment">...ale nie za dużo</li>
             <li class="fragment">Pełne zrzuty stosów</li>
             <li class="fragment">Spójna forma</li>
             <li class="fragment">Testujmy!</li>
@@ -818,15 +890,15 @@ function akcja3() {
           <section>
             <p>Możemy zmierzyć:</p>
             <ul>
-              <li class="fragment">
-                Czas renderu ekranów (poszczególnych części)
-              </li>
               <li class="fragment">Wąskie gardła, blokujące taski</li>
+              <li class="fragment">Czas renderu kawałków UI (tabelka etc.)</li>
               <li class="fragment">Wielkość pobieranych danych</li>
             </ul>
             <p class="fragment">Jak?</p>
             <ul>
-              <li class="fragment">Dynamicznie (performance, Cypress)</li>
+              <li class="fragment">
+                Dynamicznie (<code>performance.now()</code>, Cypress)
+              </li>
               <li class="fragment">Statycznie (Lighthouse etc.)</li>
             </ul>
           </section>
@@ -834,13 +906,16 @@ function akcja3() {
             Czy to wystarczy do odpowiedzi na pytanie? ☝️
             <aside class="notes">
               <li>"Czy aplikacja jest wystarczająco szybka"</li>
-              <li>Może odpowiada, ale nie używamy wtedy wcale observability</li>
+              <li>Może odpowiada, ale dość subiektywnie</li>
             </aside>
           </section>
         </section>
         <section data-background="#3c3355">
           <section>
-            <p>Co tak naprawdę nas interesuje?</p>
+            <p>
+              Co <strike style="opacity: 0.5">użytkownika</strike>nas tak
+              naprawdę interesuje?
+            </p>
             <p class="fragment">A gdyby tak E2E?</p>
             <aside class="notes">
               <li>Co tak naprawdę nas interesuje?</li>
@@ -861,6 +936,7 @@ function akcja3() {
           <section>
             <center><img src="img/sch/perf.png" /></center>
             <aside class="notes">
+              <li>CO INTERESUJE USERA</li>
               <li>Start jakiejś akcji (INTERAKCJI) - nawigacja, klik etc</li>
               <li>Coś się dzieje.</li>
               <li>Może to być ładowanie strony</li>
@@ -869,6 +945,7 @@ function akcja3() {
                 Może to być akcja która odzywa się do API i coś przetwarza
               </li>
               <li>Co interesuje userów? Kiedy mogą robić dalej</li>
+              <li>OD kiedy może coś robić do kiedy moze coś robić</li>
             </aside>
           </section>
           <section>
@@ -883,16 +960,16 @@ function akcja3() {
               <li>Koniec:<br /><strong>interaktywność?</strong></li>
             </ul>
           </section>
-          <section>I to można mierzyć</section>
+          <section>I to można też mierzyć i monitorować</section>
           <section>
             <p>Jak można działać:</p>
             <ul>
               <li class="fragment">
                 Zdefiniowanie/nazwanie każdej interakcji (scenariusza, UJ, ...)
               </li>
+              <li class="fragment">Rozpoczynamy pomiar gdy się zaczyna</li>
+              <li class="fragment">Kończymy pomiar gdy user ma wolne ręce</li>
               <li class="fragment">Raportowanie pełnego czasu interakcji</li>
-              <li class="fragment">Od interaktywności do interaktywności</li>
-              <li class="fragment">(+ dopełnienie "suchymi" danymi)</li>
             </ul>
           </section>
           <section>
@@ -909,7 +986,7 @@ function akcja3() {
           </section>
 
           <section>
-            <pre><code data-line-numbers="5-6"><script type="text/template">const Routes = () => {
+            <pre><code data-line-numbers="4-7"><script type="text/template">const Routes = () => {
   const location = useLocation();
 
   useEffect(() => {
@@ -946,7 +1023,7 @@ function akcja3() {
           </section>
 
           <section>
-            <pre><code data-line-numbers="|9-14"><script type="text/template">const View = () => {
+            <pre><code data-line-numbers="9-14"><script type="text/template">const View = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   
@@ -986,7 +1063,7 @@ function akcja3() {
           </section>
 
           <section>
-            <p>A kiedy skończyć i zaraportować?</p>
+            <p>Kiedy można skończyć pomiar?</p>
             <p class="fragment">Podpowiedź: interaktywność</p>
           </section>
           <section>
@@ -1069,8 +1146,19 @@ function akcja3() {
           <section>
             <p>Wąskie gardła</p>
             <ul>
-              <li class="fragment">Możemy dłubać ręcznie</li>
-              <li class="fragment">...<code>PerformanceObserver</code></li>
+              <li class="fragment" data-fragment-index="1">
+                Możemy dłubać ręcznie
+              </li>
+              <li
+                class="fragment"
+                data-fragment-index="1"
+                style="font-size: 0.5em; margin-left: 1em"
+              >
+                <code>performance.now()</code>
+              </li>
+              <li class="fragment" data-fragment-index="2">
+                ...<code>PerformanceObserver</code>
+              </li>
             </ul>
           </section>
           <section>
@@ -1128,10 +1216,19 @@ observer.observe({
           <section>
             <img src="img/perf/3.png" width="100%" />
           </section>
+          <section>
+            Jak to się ma do mierzenia scenariuszy?
+            <aside class="notes">Można to dopełnić</aside>
+            <aside class="notes">
+              Mamy super raport: przy otwarciu strony XYZ zajęło to tyle i tyle
+              czasu, wystąpiły wąskie gardła (long taski) i poszło 4621 bajtów
+              danych
+            </aside>
+          </section>
         </section>
         <section data-background="#3c3355">
           <section>
-            <p>Kolejna pułapka</p>
+            <p>Pułapka</p>
             <p class="fragment"><strong>Pomiar wpływa na pomiar</strong></p>
           </section>
           <section>
@@ -1180,13 +1277,26 @@ observer.observe({
             <h1>🪣</h1>
           </section>
           <section>
-            <ul>
-              <li>Raportowanie błędów</li>
-              <li>Metryki wydajności</li>
-              <li class="fragment highlight-green">Analityka zdarzeń</li>
-            </ul>
+            <h4 style="text-transform: none">Mówiliśmy o:</h4>
+            <div class="r-stack">
+              <ul class="fragment">
+                <li>Raportowanie błędów</li>
+                <li>Metryki wydajności</li>
+                <li style="opacity: 0.5">Analityka zdarzeń</li>
+              </ul>
+              <ul class="fragment">
+                <li>Raportowanie błędów</li>
+                <li>Metryki wydajności</li>
+                <li style="color: greenyellow">Analityka zdarzeń</li>
+              </ul>
+            </div>
+            <aside class="notes">
+              <li>1. Doczepiamy raport z performancu do raportu błędu</li>
+            </aside>
+            <aside class="notes"><li>MIELIŚMY NIE RUSZAĆ ALE</li></aside>
           </section>
           <section>
+            <p>Czy zrobimy to sami...</p>
             <pre><code data-line-numbers="|8-10|2-4|5">const reportClick = (event) => {
   const report = () => axios.post("/api/report-event", {
     event: serializeEvent(event)
@@ -1200,6 +1310,7 @@ document.addEventListener('click', (e) => {
 </code></pre>
           </section>
           <section>
+            <p>...czy zrobi to za nas Google Analytics...</p>
             <pre><code data-line-numbers><script type="text/template">window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
@@ -1223,10 +1334,16 @@ gtag('config', 'G-XXXXXXX');
               />
             </div>
             <aside class="notes">
-              Kiedyś klikało się filtry i pisało algorytmy
+              <li>Kiedyś klikało się filtry i pisało algorytmy</li>
+              <li>
+                Teraz mając dużo danych (a przy dużej aplikacji mówimy o
+                miliardach wpisów) wystarczy wpuścić to do klastra ML
+              </li>
+              <li>I szukamy korelacji, zależności, predykcji</li>
             </aside>
           </section>
           <section>
+            <p>Co możemy mieć?</p>
             <ul>
               <li class="fragment" style="margin-bottom: 1em">
                 Znajdowanie powtarzalnie problematycznych obszarów aplikacji
@@ -1248,34 +1365,39 @@ gtag('config', 'G-XXXXXXX');
                 </li>
                 <li>
                   1 a może wciaż powtarzają się tam błędy 503, może trzeba
-                  zajrzeć w proxy wokół tego mikroserwisu?
+                  zajrzeć w proxy wokół tego mikroserwisu? (w końćy mamy E2E)
                 </li>
                 <li>
                   2 może błąd był błahy z raportu i niekrytyczny, ale z jakiegoś
                   powodu po jego wystąpieniu userzy przestają korzystać
                 </li>
                 <li>
-                  3 z takich metryk może nam wyjść że akurat responsy z networku
-                  trwają najdłużej dla grupy z azji środkowej - trzeba dorzucić
-                  do pieca
+                  3 z takich metryk może nam wyjść że akurat nie tylko responsy
+                  z networku, ale całe interakcje trwają najdłużej dla grupy z
+                  azji środkowej - trzeba dorzucić do pieca
                 </li>
                 <li>
-                  4 może to długie interakcje powodują że userzy odchodzą?
+                  4 może to słaba wydajność powodują że userzy odchodzą? a może
+                  ilość błędów?
                 </li>
               </aside>
             </ul>
           </section>
-          <section>...ale to wszystko zależy od jakości danych</section>
+          <section>
+            <p>Odpowiedzi na te i 1001 innych pytań...</p>
+            <p class="fragment">
+              ...i wszystko zależy od tego jak to ogramy w kodzie UI
+            </p>
+          </section>
           <section>
             <p>Czyli</p>
             <ul>
               <li>Zbieranie kompletnych raportów błędów</li>
               <small><li>+ ułatwienie sobie życia</li></small>
+              <li>Struktura, podział, konsekwencja</li>
               <li>Poprawne nagrywanie wydajności</li>
+              <li>Korzystanie z nowych API</li>
             </ul>
-          </section>
-          <section>
-            <p>Pytania!</p>
           </section>
           <section>
             <p>Idzcie i obserwujcie! 👋</p>
