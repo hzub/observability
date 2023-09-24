@@ -37,37 +37,37 @@
               no właśnie - jutro na tych deskach bedzie sporo mówione o machine
               learningu, czyli o przetwarzaniu danych
             </li>
-            <li>znajdowaniu korelacji, przewidywaniu zachowań, trendów etc.</li>
             <li>
-              i tak trochę w tym temacie - jedną z mocnych gałęzi w dzisiejszym
-              internecie i w robieniu internetu jest analiza działań
-              użytkowników -
+              znajdowaniu korelacji, przewidywaniu zachowań, predykcji, trendów
+              etc.
+            </li>
+            <li>
+              jedną z mocnych gałęzi w dzisiejszym internecie i w robieniu
+              internetu jest analiza działań użytkowników -
             </li>
             <li>
               począwszy od zbierania cookiesów do remarketingu i profilowania
               reklam
             </li>
             <li>
-              poprzez bardziej wyrafinowane techniki, czyli jakieś analizy
-              behawioralne użytkowników na stronach do tego żeby optymalizować
-              featury
+              aż po analizy behawioralne użytkowników na stronach, predykcja
+              zachowań, błędów itd. co ma wpływ na to jak aplikacje są tworzone
             </li>
-            <li>
-              głównie aplikacji webowych (w sumie teraz niemal tylko takie są)
-            </li>
+            <li>inny temat:</li>
             <li>
               minęły już też trochę czasy kiedy jak appka się wysypała to
               jakiś modal żebrał o to by zgłosić to do supportu
             </li>
             <li>teraz powinna zaraportować się sama</li>
+            <li>ANYWAY</li>
             <li>
               nieważne czy celem jest cookies, zbieranie błędów czy też
               zbieranie danych do optymalizacji, nie ma żadnej dużej aplikacji
               webowej która nie ma monitoringu
             </li>
             <li>
-              a żaden monitoring czy observability nie może się zadziać bez
-              wysyłanych z frontu danych
+              a monitoring i observability zaczyna się od wysyłania danych z
+              frontendu
             </li>
             <li>i ja dzisiaj trochę o tym</li>
           </aside>
@@ -116,9 +116,11 @@
               databricks - możliwe że nie słyszeliście, ale jesteście klientem
               firmy która jest naszym klientem
             </li>
-            <li>data warehousy, lakes, przetwarzanie danych</li>
-            <li>apple, adobe, hp, toyota, siemens, cisco</li>
+            <li>
+              data warehousy, lakes, przetwarzanie danych, machine learning
+            </li>
             <li>eksabajty danych</li>
+            <li>apple, adobe, hp, toyota, siemens, cisco</li>
             <li>
               dużo klientów przetwarza u nas monitoring swoich stron - stąd też
               dużo myślenia o tym i pomysł na prezentacje
@@ -132,9 +134,13 @@
             ><strong class="text-blue-300">O</strong> jak Observability
             <aside class="notes">
               <li>zanim pójdziemy dalej</li>
-              <li>teraz by wypadała definicja</li>
-              <li>wszyscy lubią definiować</li>
-              <li>i mogą się o to bić (testy e2e, framework vs biblioteka)</li>
+              <li>teraz by wypadało zrobić slajd z definicją</li>
+              <li>programiści kochaja definicje</li>
+              <li>
+                wrzucić programistom temat do bicia (testy e2e, framework vs
+                biblioteka)
+              </li>
+              <li>przeciez to są rzeczy stworzone przez ludzi dla ludzi</li>
               <li>a my zdefiniujmy sami</li>
             </aside>
           </section>
@@ -168,7 +174,7 @@
             </aside>
           </section> -->
           <section>
-            <p>Więc ustalmy roboczo:</p>
+            <p>Czyli wiemy co chcemy wiedzieć.</p>
             <p>po pierwsze: <strong class="fragment">błędy</strong></p>
             <aside class="notes">
               <li>CHCEMY wiedzieć czy są błędy</li>
@@ -207,7 +213,12 @@
           </section>
           <section>
             <p>Więc albo się tego dowiemy "ręcznie"...</p>
-            <p class="fragment">...albo automatycznie</p>
+            <p class="fragment">...albo automatycznie.</p>
+            <aside class="notes">TO TUTAJ!</aside>
+            <aside class="notes">
+              Mamy możliwość zbierania danych o błędach, perf, trackowaniu
+              userów darmowo
+            </aside>
           </section>
           <section>
             <p>Czemu dopiero na produkcji?</p>
@@ -310,6 +321,8 @@
             <p>Część I</p>
             <p><strong>Błędy</strong></p>
           </section>
+        </section>
+        <section data-background="#c6c6c6">
           <section>
             <p>Potrzebujemy?</p>
             <aside class="notes">
@@ -446,8 +459,8 @@ export class ErrorController {
           </section>
         </section>
 
-        <section data-background="#d57b7b">
-          <section data-background="#d57b7b">
+        <section data-background="#c6c6c6">
+          <section data-background="#c6c6c6">
             <p>Pułapki i praktyki</p>
           </section>
           <section>
@@ -611,7 +624,7 @@ document
             </aside>
           </section>
         </section>
-        <section data-background="#d57b7b">
+        <section data-background="#c6c6c6">
           <section>
             <p>Pułapka #2</p>
             <p class="fragment"><strong>Logujemy za dużo</strong></p>
@@ -662,7 +675,7 @@ document
             </aside>
           </section>
         </section>
-        <section data-background="#d57b7b">
+        <section data-background="#c6c6c6">
           <section>
             <p>
               <strong>Czy to grzech wspomóc się użytkownikiem?</strong>
@@ -721,7 +734,7 @@ document
           <section><img src="img/bledy/7.png" width="100%" /></section>
           <section>Z autopsji: ☝️ mocno pomogło lokalizować błędy</section>
         </section>
-        <section data-background="#d57b7b">
+        <section data-background="#c6c6c6">
           <section>
             <p>Co jeszcze?</p>
             <aside class="notes"></aside>
@@ -831,7 +844,7 @@ function akcja3() {
             </code></pre>
           </section>
         </section>
-        <section data-background="#d57b7b">
+        <section data-background="#c6c6c6">
           <section>
             <p>Jeszcze jedna pułapka...</p>
             <p class="fragment">
@@ -857,7 +870,7 @@ function akcja3() {
           </section>
         </section>
 
-        <section data-background="#d57b7b">
+        <section data-background="#c6c6c6">
           <p>Podsumowanie części o błędach</p>
           <ul>
             <li class="fragment">Logujmy sporo...</li>
@@ -1409,6 +1422,7 @@ gtag('config', 'G-XXXXXXX');
     <script src="dist/reveal.js"></script>
     <script src="plugin/notes/notes.js"></script>
     <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
     <script src="plugin/highlight/highlight.js"></script>
     <script>
       // More info about initialization & config:
@@ -1417,6 +1431,7 @@ gtag('config', 'G-XXXXXXX');
       Reveal.initialize({
         hash: true,
 
+        navigationMode: "linear",
         highlight: {
           // beforeHighlight: (hljs) => hljs.registerLanguage("asdf"),
         },
