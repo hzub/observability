@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <title>reveal.js</title>
+    <title>JS jak JavaScript, O jak observability</title>
 
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
@@ -37,10 +37,7 @@
               no właśnie - jutro na tych deskach bedzie sporo mówione o machine
               learningu, czyli o przetwarzaniu danych
             </li>
-            <li>
-              znajdowaniu korelacji, przewidywaniu zachowań, predykcji, trendów
-              etc.
-            </li>
+            <li>znajdowaniu korelacji, przewidywaniu trendów etc.</li>
             <li>
               jedną z mocnych gałęzi w dzisiejszym internecie i w robieniu
               internetu jest analiza działań użytkowników
@@ -54,17 +51,15 @@
               i stabilności aplikacji
             </li>
             <li>
-              celem optymalizacji, predykcji zachowań, optymalizacji ficzerów
-              etc
+              celem predykcji zachowań, optymalizacji ficzerów, przewidywania
+              trendów etc
             </li>
             <li>
               jako twórcy softwareu, czy to my-inżynierowie, czy to zespół
-              produktowy - wiemy dziś o naszych aplikacjach właściwie wszystko
-            </li>
-            <li>
-              i tą wiedzę wykorzystujemy do tego żeby aplikacje poprawiać,
-              czynić wolnymi od błędów, by potocznie śledzić userów by w
-              kolejnej wersji appki przewidzieć ich kolejny krok
+              produktowy - chcemy wiedzieć o naszych appkach coraz więcej i tę
+              wiedzę zbieramy, po czym wykorzystujemy ją do tego żeby aplikacje
+              poprawiać, czynić wolnymi od błędów, by potocznie śledzić userów
+              by w kolejnej wersji appki przewidzieć ich kolejny krok
             </li>
             <li>ale te dane skądś się biorą</li>
             <li>i ja dzisiaj trochę o tym</li>
@@ -108,11 +103,13 @@
             />
           </div>
           <aside class="notes">
-            <li>od 2015 roku</li>
+            <li>nazywam sie hubert</li>
+            <li>w białymstoku meetjsy od 2015 roku</li>
             <li>FRONTEND DEV W DATABRICKS!</li>
             <li>
-              databricks - możliwe że nie słyszeliście, ale jesteście klientem
-              firmy która jest naszym klientem
+              databricks - to jedna z takich śmiesznych firm że nie
+              słyszeliście, ale jesteście klientem firmy która jest naszym
+              klientem
             </li>
             <li>
               data warehousy, lakes, przetwarzanie danych, machine learning
@@ -137,8 +134,8 @@
               <li>my programiści kochamy definicje</li>
               <li>lubimy definiować i lubimy się potem o to kłócić</li>
               <li>
-                wrzucić programistom temat do bicia np czy to jeszcze test
-                e2eowy czy integracyjny
+                wrzucić programistom trudny temat np czy to jeszcze test e2eowy
+                czy integracyjny
               </li>
               <li>albo czy to framework czy biblioteka</li>
               <li>przeciez to są rzeczy stworzone przez ludzi dla ludzi</li>
@@ -208,23 +205,31 @@
               <li>Metryki wydajności</li>
               <li>Analityka zdarzeń</li>
             </ul>
+          </section>
+          <section>
             <p class="fragment">A jak?</p>
-            <p class="fragment">Ręcznie...</p>
+            <p class="fragment">Ręcznie 📞...</p>
             <p class="fragment">...albo 🤖.</p>
             <aside class="notes">
+              <li>Mamy wszystkie potrzebne narzędzia</li>
               <li>
-                Mamy możliwość zbierania danych o błędach, perf, trackowaniu
-                userów darmowo
+                kod aplikacji sam automayucznie może zgłosić problemy lub status
+                aplikacji
               </li>
               <li>
                 user juz dawno wyraził wszystkie zgody na ciastka etc i pewnie
                 nawet tego nie czytał
               </li>
+              <li>
+                ogólna utopijna myśl - znamy wszystkie błędy, znamy wydajość i
+                wiemy w co user klika, wiemy wszystko
+              </li>
             </aside>
           </section>
           <section>
-            <p>Czemu dopiero na produkcji?</p>
+            <p>Czemu takie rzeczy dopiero na produkcji?</p>
             <aside class="notes">
+              <li>Czemu nie staging etc</li>
               <li>Czemu nie sprawdzimy tego wcześniej</li>
               <li>tylko teraz?</li>
               <li>
@@ -235,7 +240,7 @@
           </section>
           <section>
             <p>Więc umówmy się (😉) że jest to:</p>
-            <ul>
+            <ul class="fragment">
               <li>Raportowanie błędów</li>
               <li>Metryki wydajności</li>
               <li>Analityka zdarzeń</li>
@@ -293,10 +298,12 @@
 
             <aside class="notes">
               <li>nieważne jak zestawicie sobie zestaw do observability</li>
-              <li>na co zwrócić uwagę JAKO FRONTEND</li>
-              <li>na jakie pułapki uważać</li>
-              <li>jakie ciekawe triki zastosować</li>
-              <li>i jak spojrzeć na to trochę bardziej globalnie</li>
+              <li>
+                na co zwrócić uwagę JAKO FRONTEND, na jakie pułapki uważać
+              </li>
+              <li>parę trików i nowych tecnhologi</li>
+              <li>parę przemyśleń</li>
+              <li>i jak spojrzeć na temat trochę bardziej globalnie</li>
               <li>czyli JAK PISAĆ APKI KTÓRE DA SIĘ OBSERWOWAĆ</li>
               <li>
                 cel: jakaś checklista w głowie, jak bedzie chwila to sobie
@@ -352,10 +359,16 @@
           </section>
           <section>
             <p>Są błędy i błędy.</p>
-            <p class="fragment">Które raportujemy?</p>
+            <p>Które raportujemy?</p>
             <aside class="notes">
               <li>Te runtime - z naszej appki</li>
-              <li>Te z API - e2eowo do raportyowania, o tym jeszcze potem</li>
+              <li>Te z API - problem backendu? tak i nie</li>
+              <li>
+                może coś się wysypie w mikroserwisie bakendowym, może w bazie,
+                może w proxy, może w load balancerze
+              </li>
+              <li>ale to frontend się tego dowie bo userowi nie zadziała</li>
+              <li>TAKŻĘ CZEMU NIE RAPORTOWAĆ WSZYSTKIEGO?</li>
             </aside>
           </section>
 
@@ -370,11 +383,15 @@
               </li>
             </ul>
           </section>
+
           <section>
-            <p>Przykład</p>
+            <p>Przykład (Sentry)</p>
             <center>
               <img src="img/tools/sentry_embed.png" style="width:100%"" />
             </center>
+          </section>
+          <section>
+            <img src="img/sch/error.png" />
           </section>
           <section>
             <p>Przykład (Sentry)</p>
@@ -529,7 +546,10 @@ function process() {
             </center>
           </section>
           <section>
-            <p>Co pomoże (łatwe)?</p>
+            <h1>🫠</h1>
+          </section>
+          <section>
+            <p>Co pomoże?</p>
             <ul>
               <li class="fragment">Lepszy stack trace</li>
               <li class="fragment">URL / historia URLi (route-ów)</li>
@@ -560,7 +580,9 @@ document
 	});
 </code></pre>
           </section>
-          <section><img src="img/bledy/3.png" /></section>
+          <section>
+            <center><img src="img/bledy/3.png" /></center>
+          </section>
           <section>
             <pre><code data-line-numbers="4-8" data-trim>function process() {
   const initiatorStack = new Error().stack;
@@ -573,7 +595,9 @@ document
   });
 }</code></pre>
           </section>
-          <section><img src="img/bledy/4.png" /></section>
+          <section>
+            <center><img src="img/bledy/4.png" /></center>
+          </section>
           <section>
             Trochę lepiej
             <center>
@@ -600,8 +624,8 @@ document
           </section>
           <section>
             <p>
-              Notka: im bardziej rozwinięt narzędzie, tym mniej będziecie się
-              tym musieli martwić (i więcej 💰)
+              Im szersze (💰) narzędzie, tym mniej będziecie się tym musieli
+              martwić
             </p>
           </section>
           <section>
@@ -614,7 +638,7 @@ document
         <section data-background="#c6c6c6">
           <section>
             <p>Pułapka #2</p>
-            <p class="fragment"><strong>Logujemy za dużo</strong></p>
+            <p><strong>Logujemy za dużo</strong></p>
             <aside class="notes">
               <li>można?</li>
             </aside>
@@ -722,11 +746,17 @@ document
           <section>Z autopsji: ☝️ mocno pomogło lokalizować błędy</section>
         </section>
         <section data-background="#c6c6c6">
-          <section>
+          <!-- <section>
             <p>Co jeszcze?</p>
             <aside class="notes"></aside>
-          </section>
-
+          </section> -->
+          <!-- <section>
+            <center class="r-stack">
+              <img src="img/bledy/boundary1.png" />
+              <img class="fragment" src="img/bledy/boundary2.png" />
+            </center>
+          </section> -->
+          <!--
           <section data-background="white">
             <img src="img/bledy/toomuch_1.png" />
           </section>
@@ -740,7 +770,7 @@ document
             <p>Dziel i rządź:</p>
             <p>granice błędów w aplikacji</p>
             <aside class="notes"></aside>
-          </section>
+          </section> -->
           <!-- <section>
             <pre style="width: 100%"><code>
               <script type="text/template">function Root() {
@@ -764,12 +794,12 @@ document
   );
 }</script></code></pre>
           </section> -->
-          <section>
+          <!-- <section>
             <center class="r-stack">
               <img src="img/bledy/boundary1.png" />
               <img class="fragment" src="img/bledy/boundary2.png" />
             </center>
-          </section>
+          </section> -->
           <!-- <section>
             <pre style="width: 100%"><code data-line-numbers="3,8">
               <script type="text/template">function CompaniesRoutes() {
@@ -790,7 +820,7 @@ document
             <aside class="notes">react-error-boundary</aside>
           </section> -->
           <section>
-            <p>Kolejny ból</p>
+            <p>Co jeszcze?</p>
             <p class="fragment">Niespójna struktura wyjątków</p>
             <aside class="notes"></aside>
           </section>
@@ -862,7 +892,7 @@ function akcja3() {
           <ul>
             <li class="fragment">Logujmy sporo...</li>
             <li class="fragment">...ale nie za dużo</li>
-            <li class="fragment">Pełne zrzuty stosów</li>
+            <li class="fragment">Jakość stack trace'ów ✨</li>
             <li class="fragment">Spójna forma</li>
             <li class="fragment">Testujmy!</li>
           </ul>
@@ -931,6 +961,7 @@ function akcja3() {
                 Ale my na frontendzie mamy wyjątkową, w zasadzie najlepszą
                 pozycję do mierzenia
               </li>
+              <li>WSZYSTKIEGO</li>
               <li>JAKI INNY AKTOR potrafi zebrtać tak dane</li>
             </aside>
           </section>
@@ -968,8 +999,10 @@ function akcja3() {
               <li class="fragment">
                 Zdefiniowanie/nazwanie każdej scenariusza (interakcji, UJ, ...)
               </li>
-              <li class="fragment">Start: zabieramy użytkownikowi wolność</li>
-              <li class="fragment">Koniec: zwracamy ją z powrotem</li>
+              <li class="fragment">
+                Start pomiaru: zabieramy użytkownikowi wolność
+              </li>
+              <li class="fragment">Koniec pomiaru: zwracamy ją z powrotem</li>
             </ul>
           </section>
           <section>
@@ -1063,11 +1096,11 @@ function akcja3() {
           </section>
 
           <section>
-            <p>Kiedy można skończyć pomiar?</p>
-            <p class="fragment">Podpowiedź: interaktywność</p>
-          </section>
-          <section>
-            <h1>🤔</h1>
+            <p>A kiedy skończyć pomiar?</p>
+            <p class="fragment" data-fragment-index="1">
+              Podpowiedź: interaktywność
+            </p>
+            <h1 class="fragment" data-fragment-index="1">🤔</h1>
           </section>
           <section>
             <pre><code><script type="text/template">requestAnimationFrame(() => {
@@ -1140,7 +1173,7 @@ function akcja3() {
         </section>
         <section data-background="#3c3355">
           <section>
-            <p>Gwoli ścisłości</p>
+            <p>Nie ma ogółu bez szczegółu</p>
             <ul>
               <li class="fragment">Wąskie gardła</li>
               <li class="fragment">Ilość zasobów</li>
@@ -1221,7 +1254,6 @@ observer.observe({
           </section>
           <section>
             Jak to wygląda w całości?
-            <aside class="notes">Można to dopełnić</aside>
             <aside class="notes">
               Mamy super raport: przy otwarciu strony XYZ zajęło to tyle i tyle
               czasu, wystąpiły wąskie gardła (long taski) i poszło 4621 bajtów
@@ -1332,8 +1364,7 @@ gtag('config', 'G-XXXXXXX');
               <li>Możemy pójść krok dalej</li>
               <li>i wpuścić je wszystkie do klastra ML</li>
               <li>
-                Po czym uruchomić algorytmy szukające korelacji, kojarzenia i
-                predykcji
+                Po czym uruchomić szukanie korelacji, kojarzenie i predykcji
               </li>
             </aside>
           </section>
@@ -1361,21 +1392,19 @@ gtag('config', 'G-XXXXXXX');
                 </li>
                 <li>
                   2 może błąd był błahy z raportu i niekrytyczny, ale z jakiegoś
-                  powodu po jego wystąpieniu userzy przestają korzystać
+                  powodu po jego wystąpieniu userzy przestają korzystać? może to
+                  słaba wydajność powodują że userzy odchodzą? a może ilość
+                  błędów?
                 </li>
                 <li>
                   3 z takich metryk może nam wyjść że akurat nie tylko responsy
                   z networku, ale całe interakcje trwają najdłużej dla grupy z
                   azji środkowej - trzeba dorzucić do pieca
                 </li>
-                <li>
-                  4 może to słaba wydajność powodują że userzy odchodzą? a może
-                  ilość błędów?
-                </li>
               </aside>
             </ul>
           </section>
-          <section>
+          <section data-transition="fade">
             <p>Co możemy mieć?</p>
             <ul style="font-size: 0.8em">
               <li>Identyfikacja defektywnych obszarów aplikacji</li>
