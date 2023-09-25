@@ -147,7 +147,7 @@
           </section>
           <section>
             <div>Wypuszczamy aplikację na produkcję.</div>
-            <div class="fragment">
+            <div>
               Co <strike style="opacity: 0.3">chcemy</strike>musimy wiedzieć o
               dalszych jej losach?
             </div>
@@ -202,19 +202,24 @@
             </aside>
           </section>
           <section>
-            <p>TODO</p>
             <p>Roboczo:</p>
             <ul>
               <li>Raportowanie błędów</li>
               <li>Metryki wydajności</li>
               <li>Analityka zdarzeń</li>
             </ul>
-            <p class="fragment">A jak? Albo "ręcznie"...</p>
-            <p class="fragment">...albo automatycznie.</p>
-            <aside class="notes">TO TUTAJ!</aside>
+            <p class="fragment">A jak?</p>
+            <p class="fragment">Ręcznie...</p>
+            <p class="fragment">...albo 🤖.</p>
             <aside class="notes">
-              Mamy możliwość zbierania danych o błędach, perf, trackowaniu
-              userów darmowo
+              <li>
+                Mamy możliwość zbierania danych o błędach, perf, trackowaniu
+                userów darmowo
+              </li>
+              <li>
+                user juz dawno wyraził wszystkie zgody na ciastka etc i pewnie
+                nawet tego nie czytał
+              </li>
             </aside>
           </section>
           <section>
@@ -230,7 +235,7 @@
           </section>
           <section>
             <p>Więc umówmy się (😉) że jest to:</p>
-            <ul class="fragment">
+            <ul>
               <li>Raportowanie błędów</li>
               <li>Metryki wydajności</li>
               <li>Analityka zdarzeń</li>
@@ -291,14 +296,7 @@
               <li>na co zwrócić uwagę JAKO FRONTEND</li>
               <li>na jakie pułapki uważać</li>
               <li>jakie ciekawe triki zastosować</li>
-              <li>
-                i jak spojrzeć na to trochę bardziej globalnie by mieć cały czas
-                z tyłu głowy że to jest ważne
-              </li>
-              <!-- <li>dotkniemy każdego tematu ze strony frontendu</li>
-              <li>zwrócić uwagę na uniwersalne praktyki, pułapki etc</li>
-              <li>pokazać ciekawostki</li>
-              -->
+              <li>i jak spojrzeć na to trochę bardziej globalnie</li>
               <li>czyli JAK PISAĆ APKI KTÓRE DA SIĘ OBSERWOWAĆ</li>
               <li>
                 cel: jakaś checklista w głowie, jak bedzie chwila to sobie
@@ -324,12 +322,9 @@
             <p>Potrzebujemy?</p>
             <aside class="notes">
               <li>
-                Już rozmawialiśmy - wypuszczacie bezbłędne aplikacje? JAk nie to
+                Już rozmawialiśmy - wypuszczacie bezbłędne aplikacje? JAk tak to
+                nie słuchajcie ;d
               </li>
-              <!-- <li>
-                Zakładamy że mamy super CI więc żadne błędy czasu budowy:
-                syntaxy etc. nie przejdą więc interesują nas tylko runtime’y
-              </li> -->
             </aside>
           </section>
           <section>
@@ -352,7 +347,7 @@
           </section>
 
           <section>
-            <p>Przypominajka/wyjaśnienie</p>
+            <p>Jak to może działać?</p>
             <img src="img/sch/error.png" />
           </section>
           <section>
@@ -376,22 +371,27 @@
             </ul>
           </section>
           <section>
+            <p>Przykład</p>
             <center>
-              <img src="img/tools/sentry_embed.png" />
+              <img src="img/tools/sentry_embed.png" style="width:100%"" />
             </center>
           </section>
           <section>
+            <p>Przykład (Sentry)</p>
             <center>
               <img src="img/tools/sentry.jpg" />
             </center>
           </section>
           <section>
-            <img src="img/tools/logrocket.png" />
+            <p>Przykład (LogRocket)</p>
+            <center>
+              <img src="img/tools/logrocket.png" />
+            </center>
           </section>
           <section>
             <p>Jak?</p>
             <ul>
-              <li>
+              <li style="opacity: 0.3">
                 Gotowe narzędzia
                 <br /><small
                   >(np. Datadog, Sentry, LogRocket, New Relic, etc.)</small
@@ -405,7 +405,7 @@
             </ul>
           </section>
           <section>
-            <h4>Front-end</h4>
+            <p>Przykład - własny tooling</p>
             <pre><code data-line-numbers="|3-7|11">// logErrorService.js
 
 const reportError = (error) => {
@@ -421,7 +421,7 @@ try {...} catch (e) { reportError(e); }
 </code></pre>
           </section>
           <section>
-            <h4>Back-end</h4>
+            <p>Przykład - własny tooling</p>
             <pre><code data-line-numbers="|6-7">// errorService.ts
 
 export class ErrorController {
@@ -439,8 +439,14 @@ export class ErrorController {
           </section>
           <section>
             <center>
-              <img src="img/tools/grafana_dash.png" width="50%"" /> <img
-              src="img/tools/grafana_log.png" width="50%"" />
+              <div class="r-stack">
+                <img src="img/tools/grafana_log.png" width="100%" />
+                <img
+                  class="fragment"
+                  src="img/tools/grafana_dash.png"
+                  width="100%"
+                />
+              </div>
             </center>
           </section>
           <section>
@@ -477,8 +483,8 @@ export class ErrorController {
           </section> -->
 
           <section>
-            <p>Przykład: jakiś asynchroniczny wyjątek</p>
-            <pre><code data-line-numbers="13-21|18-21|4-8" data-trim>class ApiService {
+            <p>Przykład: wyjątek asynchroniczny</p>
+            <pre><code data-line-numbers="1-11|13-21|18-21|4-8" data-trim>class ApiService {
 	async call() {
 		const response = await fetch("https://[...]");
 		if (!response.ok) {
@@ -505,7 +511,7 @@ function process() {
           <section>
             <pre><code data-trim>
               .catch((error) => {
-                console.log(error);
+                console.log(error.stack);
               });
 			  </code></pre>
           </section>
@@ -515,51 +521,29 @@ function process() {
             <p class="fragment">Jaki ticket z tego wyjdzie?</p>
           </section>
           <section>
-            <center><img src="img/bledy/weak_error.png" /></center>
+            <center>
+              <img
+                src="img/bledy/weak_error.png"
+                style="transform: scale(1.25)"
+              />
+            </center>
           </section>
           <section>
             <p>Co pomoże (łatwe)?</p>
             <ul>
-              <li class="fragment">Pełny stack trace</li>
+              <li class="fragment">Lepszy stack trace</li>
               <li class="fragment">URL / historia URLi (route-ów)</li>
               <li class="fragment"><code>navigator.*</code></li>
             </ul>
           </section>
           <section>
             <p>Stack trace - da się lepiej?</p>
+            <p class="fragment">
+              Powód problemu ze stackiem: kod asynchroniczny
+              <br />🤔
+            </p>
           </section>
-          <section>
-            <pre><code data-line-numbers="5-7|18-20|23-27" data-trim>class ApiService {
-  async call() {
-    const response = await fetch("...");
-    if (!response.ok) {
-      return Promise.reject(new Error(
-        "Failed to fetch [URL]"
-      ));
-    }
-    return response.json();
-  }
-}
 
-function process() {
-  new ApiService().call()
-    .then((data) => {
-      // ...
-    })
-    .catch((error) => {
-      console.log(error.stack)
-    });
-}
-
-document
-	.querySelector("button")
-	.addEventListener("click", () => {
-		process();
-	});
-</code></pre>
-          </section>
-          <section><img src="img/bledy/1.png" width="100%" /></section>
-          <section>Możemy lepiej?</section>
           <section>
             <pre><code data-line-numbers="2|3-6" data-trim>function process() {
   const initiatorStack = new Error().stack;
@@ -592,7 +576,12 @@ document
           <section><img src="img/bledy/4.png" /></section>
           <section>
             Trochę lepiej
-            <center><img src="img/bledy/weak_error_b1.png" /></center>
+            <center>
+              <img
+                src="img/bledy/weak_error_b1.png"
+                style="width: 100%; transform: scale(1.2); margin-top: 1em"
+              />
+            </center>
           </section>
           <section>
             Jeszcze lepiej
@@ -611,8 +600,8 @@ document
           </section>
           <section>
             <p>
-              Notka: im bardziej "gotowe" (kosztowne) narzędzie, tym mniej
-              będziecie się tym ☝️ musieli martwić
+              Notka: im bardziej rozwinięt narzędzie, tym mniej będziecie się
+              tym musieli martwić (i więcej 💰)
             </p>
           </section>
           <section>
@@ -748,11 +737,11 @@ document
             </center>
           </section>
           <section>
-            <p>Divide and conquer!</p>
-            <p>Granice błędów w aplikacji</p>
+            <p>Dziel i rządź:</p>
+            <p>granice błędów w aplikacji</p>
             <aside class="notes"></aside>
           </section>
-          <section>
+          <!-- <section>
             <pre style="width: 100%"><code>
               <script type="text/template">function Root() {
   return (
@@ -774,14 +763,14 @@ document
     </Routes>
   );
 }</script></code></pre>
-          </section>
+          </section> -->
           <section>
             <center class="r-stack">
               <img src="img/bledy/boundary1.png" />
               <img class="fragment" src="img/bledy/boundary2.png" />
             </center>
           </section>
-          <section>
+          <!-- <section>
             <pre style="width: 100%"><code data-line-numbers="3,8">
               <script type="text/template">function CompaniesRoutes() {
   return (
@@ -799,7 +788,7 @@ document
   const onError = (error) => reportError(error, { boundaryId });
 // ...</script></code></pre>
             <aside class="notes">react-error-boundary</aside>
-          </section>
+          </section> -->
           <section>
             <p>Kolejny ból</p>
             <p class="fragment">Niespójna struktura wyjątków</p>
@@ -869,7 +858,7 @@ function akcja3() {
         </section>
 
         <section data-background="#c6c6c6">
-          <p>Podsumowanie części o błędach</p>
+          <p>Błędy - podsumowanie</p>
           <ul>
             <li class="fragment">Logujmy sporo...</li>
             <li class="fragment">...ale nie za dużo</li>
@@ -912,6 +901,7 @@ function akcja3() {
               </li>
               <li class="fragment">Statycznie (Lighthouse etc.)</li>
             </ul>
+            <p class="fragment">Często to koniec 🏁</p>
           </section>
           <section>
             Czy to wystarczy do odpowiedzi na pytanie? ☝️
@@ -924,10 +914,10 @@ function akcja3() {
         <section data-background="#3c3355">
           <section>
             <p>
-              Co <strike style="opacity: 0.5">użytkownika</strike>nas tak
+              Co <strike style="opacity: 0.25">użytkownika</strike>nas tak
               naprawdę interesuje?
             </p>
-            <p class="fragment">A gdyby tak E2E?</p>
+            <!-- <p class="fragment">A gdyby tak E2E?</p> -->
             <aside class="notes">
               <li>Co tak naprawdę nas interesuje?</li>
               <li>
@@ -976,11 +966,10 @@ function akcja3() {
             <p>Jak można działać:</p>
             <ul>
               <li class="fragment">
-                Zdefiniowanie/nazwanie każdej interakcji (scenariusza, UJ, ...)
+                Zdefiniowanie/nazwanie każdej scenariusza (interakcji, UJ, ...)
               </li>
-              <li class="fragment">Rozpoczynamy pomiar gdy się zaczyna</li>
-              <li class="fragment">Kończymy pomiar gdy user ma wolne ręce</li>
-              <li class="fragment">Raportowanie pełnego czasu interakcji</li>
+              <li class="fragment">Start: zabieramy użytkownikowi wolność</li>
+              <li class="fragment">Koniec: zwracamy ją z powrotem</li>
             </ul>
           </section>
           <section>
@@ -992,7 +981,7 @@ function akcja3() {
               <li class="fragment">
                 Rozpoczynanie interakcji na żądanie (zdarzenie na elemencie)
               </li>
-              <li class="fragment">Zależnie od frameworka</li>
+              <li class="fragment">...zależnie od frameworka</li>
             </ul>
           </section>
 
@@ -1091,6 +1080,9 @@ function akcja3() {
     // Odblokowanie
   });
 });</script></code></pre>
+            <small style="font-size: 0.4em">
+              https://medium.com/@paul_irish/requestanimationframe-scheduling-for-nerds-9c57f7438ef4
+            </small>
             <aside class="notes">
               <li>
                 pierwszy rAF moze jeszcze wykonac się w tej samej ramce
@@ -1148,7 +1140,7 @@ function akcja3() {
         </section>
         <section data-background="#3c3355">
           <section>
-            <p>A co ze szczegółami?</p>
+            <p>Gwoli ścisłości</p>
             <ul>
               <li class="fragment">Wąskie gardła</li>
               <li class="fragment">Ilość zasobów</li>
@@ -1228,7 +1220,7 @@ observer.observe({
             <img src="img/perf/3.png" width="100%" />
           </section>
           <section>
-            Jak to się ma do mierzenia scenariuszy?
+            Jak to wygląda w całości?
             <aside class="notes">Można to dopełnić</aside>
             <aside class="notes">
               Mamy super raport: przy otwarciu strony XYZ zajęło to tyle i tyle
@@ -1247,18 +1239,6 @@ observer.observe({
             <ul>
               <li class="fragment">Kolejkowanie</li>
               <li class="fragment">Sampling</li>
-            </ul>
-          </section>
-          <section>
-            <p>Coś jeszcze?</p>
-            <p>Nazywanie interakcji</p>
-            <ul>
-              <li class="fragment" style="color: orangered">
-                <code>LOAD_TABLE</code>
-              </li>
-              <li class="fragment" style="color: white">
-                <code>customers.details_view.LOAD_TABLE</code>
-              </li>
             </ul>
           </section>
         </section>
@@ -1308,11 +1288,10 @@ observer.observe({
           </section>
           <section>
             <p>Czy zrobimy to sami...</p>
-            <pre><code data-line-numbers="|8-10|2-4|5">const reportClick = (event) => {
-  const report = () => axios.post("/api/report-event", {
+            <pre><code data-line-numbers="|7-9|2-4">const reportClick = (event) => {
+  axios.post("/api/report-event", {
     event: serializeEvent(event)
   });
-  queueReport(report);
 }
 
 document.addEventListener('click', (e) => {
@@ -1347,26 +1326,28 @@ gtag('config', 'G-XXXXXXX');
             <aside class="notes">
               <li>Kiedyś klikało się filtry i pisało algorytmy</li>
               <li>
-                Teraz mając dużo danych (a przy dużej aplikacji mówimy o
-                miliardach wpisów) wystarczy wpuścić to do klastra ML
+                Teraz mając ten ogrom kompletnych danych o aplikacji (a przy
+                dużej aplikacji mówimy o miliardach wpisów)
               </li>
-              <li>I szukamy korelacji, zależności, predykcji</li>
+              <li>Możemy pójść krok dalej</li>
+              <li>i wpuścić je wszystkie do klastra ML</li>
+              <li>
+                Po czym uruchomić algorytmy szukające korelacji, kojarzenia i
+                predykcji
+              </li>
             </aside>
           </section>
           <section>
             <p>Co możemy mieć?</p>
             <ul>
               <li class="fragment" style="margin-bottom: 1em">
-                Znajdowanie powtarzalnie problematycznych obszarów aplikacji
+                Identyfikacja defektywnych obszarów aplikacji
               </li>
               <li class="fragment" style="margin-bottom: 1em">
-                Identyfikacja skali rażenia błędów
+                Przewidywanie rezygnacji, dentyfikacja skali rażenia błędów
               </li>
               <li class="fragment" style="margin-bottom: 1em">
                 Optymalizacja wydajności (np. przy segmentacji geograficznej)
-              </li>
-              <li class="fragment" style="margin-bottom: 1em">
-                Przewidywanie rezygnacji (np. względem wydajności)
               </li>
 
               <aside class="notes">
@@ -1395,20 +1376,60 @@ gtag('config', 'G-XXXXXXX');
             </ul>
           </section>
           <section>
-            <p>Odpowiedzi na te i 1001 innych pytań...</p>
+            <p>Co możemy mieć?</p>
+            <ul style="font-size: 0.8em">
+              <li>Identyfikacja defektywnych obszarów aplikacji</li>
+              <li>
+                Przewidywanie rezygnacji, dentyfikacja skali rażenia błędów
+              </li>
+              <li>
+                Optymalizacja wydajności (np. przy segmentacji geograficznej)
+              </li>
+
+              <li class="fragment" style="opacity: 0.9">
+                Predykcja skalowania aplikacji
+              </li>
+
+              <li class="fragment" style="opacity: 0.75">
+                Optymalizacja cache'u
+              </li>
+
+              <li class="fragment" style="opacity: 0.6">
+                Automatyczna priorytyzacja błędów
+              </li>
+              <li class="fragment" style="opacity: 0.55">
+                Znajdowanie trendów błędów przy optymalizacji
+              </li>
+              <li class="fragment" style="opacity: 0.4">
+                Tuning load balancingu
+              </li>
+              <li class="fragment" style="opacity: 0.25">
+                Identyfikacja najlepszych metryk
+              </li>
+              <li class="fragment" style="opacity: 0.1">...</li>
+            </ul>
+          </section>
+          <section>
+            <p>Odpowiedzi na te i 1001 innych pytań</p>
             <p class="fragment">
-              ...i wszystko zależy od tego jak to ogramy w kodzie UI
+              ...będą tak dobre, jak dobre będą dane które dostarczymy
             </p>
           </section>
           <section>
-            <p>Czyli</p>
-            <ul>
-              <li>Zbieranie kompletnych raportów błędów</li>
-              <small><li>+ ułatwienie sobie życia</li></small>
-              <li>Struktura, podział, konsekwencja</li>
-              <li>Poprawne nagrywanie wydajności</li>
-              <li>Korzystanie z nowych API</li>
+            <p>Nowy system do obserwowania/monitoringu?</p>
+            <ul style="list-style-type: none">
+              <li class="fragment">✅ Zbieranie kompletnych raportów błędów</li>
+              <li class="fragment">✅ Struktura, podział, konsekwencja</li>
+              <li class="fragment">✅ Kompletne raportowanie wydajności</li>
             </ul>
+            <div class="fragment">
+              <p style="margin-top: 1em">
+                Posiadasz system do obserwowania/monitoringu?
+              </p>
+              <ul style="list-style-type: none">
+                <li>✅ Zajrzyj tam czasem 😉</li>
+              </ul>
+            </div>
           </section>
           <section>
             <p>Idzcie i obserwujcie! 👋</p>
