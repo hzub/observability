@@ -43,32 +43,30 @@
             </li>
             <li>
               jedną z mocnych gałęzi w dzisiejszym internecie i w robieniu
-              internetu jest analiza działań użytkowników -
+              internetu jest analiza działań użytkowników
             </li>
             <li>
-              począwszy od zbierania cookiesów do remarketingu i profilowania
-              reklam
+              nie chodzi tylko o zbieranie ciastek po to żeby wam potem przez
+              tydzień wyświetlać towar którego szukaliście do zakupu
             </li>
             <li>
-              aż po analizy behawioralne użytkowników na stronach, predykcja
-              zachowań, błędów itd. co ma wpływ na to jak aplikacje są tworzone
-            </li>
-            <li>inny temat:</li>
-            <li>
-              minęły już też trochę czasy kiedy jak appka się wysypała to
-              jakiś modal żebrał o to by zgłosić to do supportu
-            </li>
-            <li>teraz powinna zaraportować się sama</li>
-            <li>ANYWAY</li>
-            <li>
-              nieważne czy celem jest cookies, zbieranie błędów czy też
-              zbieranie danych do optymalizacji, nie ma żadnej dużej aplikacji
-              webowej która nie ma monitoringu
+              ale tez o logowanie zachowań użytkowników, informacji o wydajności
+              i stabilności aplikacji
             </li>
             <li>
-              a monitoring i observability zaczyna się od wysyłania danych z
-              frontendu
+              celem optymalizacji, predykcji zachowań, optymalizacji ficzerów
+              etc
             </li>
+            <li>
+              jako twórcy softwareu, czy to my-inżynierowie, czy to zespół
+              produktowy - wiemy dziś o naszych aplikacjach właściwie wszystko
+            </li>
+            <li>
+              i tą wiedzę wykorzystujemy do tego żeby aplikacje poprawiać,
+              czynić wolnymi od błędów, by potocznie śledzić userów by w
+              kolejnej wersji appki przewidzieć ich kolejny krok
+            </li>
+            <li>ale te dane skądś się biorą</li>
             <li>i ja dzisiaj trochę o tym</li>
           </aside>
         </section>
@@ -86,7 +84,7 @@
               <div class="fragment" data-fragment-index="1">👋 Hubert Zub</div>
               <div
                 class="fragment"
-                data-fragment-index="2"
+                data-fragment-index="3"
                 style="display: flex; gap: 0.2em; align-items: center"
               >
                 <img src="logomjs.png" style="width: 1em; margin: 0" />
@@ -95,7 +93,7 @@
               <div
                 class="fragment"
                 style="display: flex; gap: 0.2em; align-items: center"
-                data-fragment-index="3"
+                data-fragment-index="4"
               >
                 <img src="logo.png" style="width: 1em; margin: 0" />
                 Databricks
@@ -103,7 +101,7 @@
             </div>
             <img
               src="download.jpeg"
-              data-fragment-index="1"
+              data-fragment-index="2"
               width="300"
               class="fragment"
               style="margin: 0"
@@ -129,17 +127,20 @@
         </section>
         <section>
           <section>
-            <span style="opacity: 0.3"
+            <span style="opacity: 0.15"
               ><strong class="text-orange-300">JS</strong> jak JavaScript, </span
             ><strong class="text-blue-300">O</strong> jak Observability
             <aside class="notes">
               <li>zanim pójdziemy dalej</li>
-              <li>teraz by wypadało zrobić slajd z definicją</li>
-              <li>programiści kochaja definicje</li>
+              <li>OBSERVABILITY, MONITORING, bo o tym dzisiaj mowa</li>
+              <li>teraz by mi zdefiniować o czym mowa</li>
+              <li>my programiści kochamy definicje</li>
+              <li>lubimy definiować i lubimy się potem o to kłócić</li>
               <li>
-                wrzucić programistom temat do bicia (testy e2e, framework vs
-                biblioteka)
+                wrzucić programistom temat do bicia np czy to jeszcze test
+                e2eowy czy integracyjny
               </li>
+              <li>albo czy to framework czy biblioteka</li>
               <li>przeciez to są rzeczy stworzone przez ludzi dla ludzi</li>
               <li>a my zdefiniujmy sami</li>
             </aside>
@@ -161,22 +162,11 @@
               <li>że te featury są znajdowalne przez userów!</li>
             </aside>
           </section>
-          <!-- <section>
-            A kto tego potrzebuje?
-            <aside class="notes">
-              <li>
-                czy my jako programiści potrzebujemy zbierania dużęj ilości
-                logów userzy korzystają z apki
-              </li>
-              <li>my może nie, ale ci od produktu</li>
-              <li>albo czy aplikacja szybko działa</li>
-              <li>albo czy featury które tworzymy w ogóle są wykorzystywane</li>
-            </aside>
-          </section> -->
+
           <section>
-            <p>Czyli wiemy co chcemy wiedzieć.</p>
-            <p>po pierwsze: <strong class="fragment">błędy</strong></p>
+            <p>Po pierwsze: <strong class="fragment">błędy</strong></p>
             <aside class="notes">
+              <li>WAŻNE: Bez encyklopedycznej definicji.</li>
               <li>CHCEMY wiedzieć czy są błędy</li>
               zrobiliście aplikację, wiecie że jest bez błędów bo przecież
               popisaliście testy, wysyłacie na produkcję. Checie słyszeć o
@@ -212,7 +202,14 @@
             </aside>
           </section>
           <section>
-            <p>Więc albo się tego dowiemy "ręcznie"...</p>
+            <p>TODO</p>
+            <p>Roboczo:</p>
+            <ul>
+              <li>Raportowanie błędów</li>
+              <li>Metryki wydajności</li>
+              <li>Analityka zdarzeń</li>
+            </ul>
+            <p class="fragment">A jak? Albo "ręcznie"...</p>
             <p class="fragment">...albo automatycznie.</p>
             <aside class="notes">TO TUTAJ!</aside>
             <aside class="notes">
@@ -233,10 +230,10 @@
           </section>
           <section>
             <p>Więc umówmy się (😉) że jest to:</p>
-            <ul>
-              <li class="fragment">Raportowanie błędów</li>
-              <li class="fragment">Metryki wydajności</li>
-              <li class="fragment">Analityka zdarzeń</li>
+            <ul class="fragment">
+              <li>Raportowanie błędów</li>
+              <li>Metryki wydajności</li>
+              <li>Analityka zdarzeń</li>
             </ul>
             <p class="fragment">...na środowisku produkcyjnym.</p>
             <aside class="notes">
@@ -437,6 +434,7 @@ export class ErrorController {
 </code></pre>
           </section>
           <section>
+            <p>Co dalej?</p>
             <center><img src="img/sch/logs.png" width="100%"" /></center>
           </section>
           <section>
@@ -449,7 +447,6 @@ export class ErrorController {
             <p>Cel?</p>
             <ul>
               <li class="fragment">Możliwie szybka reprodukcja</li>
-              <li class="fragment">Statystyka</li>
               <li class="fragment">Alerting</li>
               <li class="fragment">
                 Unikamy zawracania 🎸 userowi
@@ -480,9 +477,10 @@ export class ErrorController {
           </section> -->
 
           <section>
+            <p>Przykład: jakiś asynchroniczny wyjątek</p>
             <pre><code data-line-numbers="13-21|18-21|4-8" data-trim>class ApiService {
 	async call() {
-		const response = await fetch("...");
+		const response = await fetch("https://[...]");
 		if (!response.ok) {
 			return Promise.reject(new Error(
         "Failed to fetch [URL]"
