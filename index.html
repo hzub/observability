@@ -24,6 +24,10 @@
       <!-- <div class="slides"></div> -->
       <div class="slides">
         <section>
+          <div><small>Kod źródłowy prezentacji / slajdów:</small></div>
+          <div><small> https://github.com/hzub/observability</small></div>
+        </section>
+        <section>
           <strong class="text-orange-300">JS</strong> jak JavaScript,
           <strong class="text-blue-300">O</strong> jak Observability
           <p class="text-2xl">Hubert Zub, Future Conf 2023</p>
@@ -1509,6 +1513,9 @@ gtag('config', 'G-XXXXXXX');
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+      Reveal.configure({
+        pdfSeparateFragments: false,
       });
     </script>
   </body>
